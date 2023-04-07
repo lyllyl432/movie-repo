@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--CSS-->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="movie.css">
+    <link rel="stylesheet" href="list.css">
+    <!--GOOGLE FONT-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="styles
+    ">
+    <!--FONT AWESOME-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
+    <!--SWIPER JS-->
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+/>
+    <title>YouMovies</title>
+</head>
+<body>
+    <section id="header">
+        <div class="header-container container">
+            <div class="nav-links">
+                <div id="logo">
+                    <a href="#">YouMovies</a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Drama</a></li>
+                    <li><a href="#">Movies</a></li>
+                    <li><a href="#">Episodes</a></li>
+                </ul>
+            </div>
+            <div id="search-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+    </section>
+    <div class="search-bar-container">
+        <div class="form-group has-search">
+            <input type="text" class="form-control" placeholder="Search for a movie, tv shows">
+            <span class="fa fa-search form-control-feedback"></span>
+          </div>
+    </div>
+    <!--Account section-->
+    <main id="account">
+        <div class="account-container container">
+            <div id="avatar">
+                <h2>J</h2>
+            </div>
+            <div class="account-info">
+                <div class="info-wrapper">
+                    <h3 id="username">john lyl</h3>
+                    <h4>Member since February 2023</h4>
+                </div>
+                <div class="content-row">
+                    <div class="content-wrapper">
+                        <div class="ring-percent">
+                            <div class="circle">
+                                <h6 class="circle-num">0%</h6>
+                            </div>
+                        </div>  
+                        <div class="text">Average <br>Movie Score</div>
+                    </div>
+                    <div class="content-wrapper">
+                        <div class="ring-percent">
+                            <div class="circle">
+                                <h6 class="circle-num">0%</h6>
+                            </div>
+                        </div>  
+                        <div class="text">Average <br>TV Score</div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </main>
+    <section id="list">
+        <div class="favorite-container container">
+            <!-- <div class="list-img">
+                <img src="" alt="">
+            </div>
+            <div class="details">
+                <div class="header-box-wrapper">
+                    <div class="ring-percent">
+                        <div class="circle">
+                            <h6 class="circle-num"></h6>
+                        </div>
+                    </div>
+                    <div class="title-wrapper">
+                        <h3 class="title">The Starry Love</h3>
+                        <small class="date"></small>
+                    </div>
+                    <div class="overview">
+                        <p></p>
+                    </div>
+                    <div class="action-bar">
+                        <div class="rating-bar">
+                            <button data-id=><i class="fa-regular fa-star"></i></button>
+                            <span>Your rating</span>
+                        </div>
+                        <div class="favorite-bar">
+                            <button data-id=><i class="fa-regular fa-heart"></i></button>
+                            <span>Favorite</span>
+                        </div>
+                        <div class="add-bar">
+                            <button data-id=><i class="fa-solid fa-list"></i></button>
+                            <span>Add to list</span>
+                        </div>
+                        <div class="remove-bar">
+                            <button data-id=><i class="fa-solid fa-x"></i></button>
+                            <span>Remove</span>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+        </div>
+    </section>
+<!--js file source-->
+<script type="module" src="favorite.js"></script>
+</body>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--CSS-->
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="movie.css">
+    <!--FONT AWESOME-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
+    <!--GOOGLE FONT-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <title>YouMovies</title>
+</head>
+<body>
+   <!--HEADER-->
+   <section id="header">
+    <div class="header-container container">
+        <div class="nav-links">
+            <div id="logo">
+                <a href="#" class="trial">YouMovies</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Drama</a></li>
+                <li><a href="#">Movies</a></li>
+                <li><a href="#">Episodes</a></li>
+            </ul>
+        </div>
+        <div id="search-icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+    </div>
+</section>
+<div class="search-bar-container">
+    <div class="form-group has-search">
+        <input type="text" class="form-control" placeholder="Search for a movie, tv shows">
+        <span class="fa fa-search form-control-feedback"></span>
+      </div>
+</div>
+    
+    <section id="featured-movie">
+        <div class="container">
+            <div class="movie-container">
+            </div>
+        </div>
+    </section>
+    <!-- <li id="rating-system">
+        <div class="ratings-container">
+        <a href="" class="btn createList" data-id = ${id}><i class="fa-regular fa-list"></i></a>
+            <div class="rating-identifier">
+                <span>Rate It!</span>
+            </div>
+        <form action="" id="rating-form">
+            <fieldset id="rating">
+                <input type="radio" id="star-5" class="input-identifier" name="rating" value="10.0"> <label class="full label-icon" for="star-5" title="5 stars"></label>
+                <input type="radio" id="star-4-half" class="input-identifier"name="rating" value="9.0"> <label class="half label-icon" for="star-4-half" title="4 half stars"></label>
+                <input type="radio" id="star-4" class="input-identifier"name="rating" value="8.0"> <label class="full label-icon" for="star-4" title="4 stars"></label>
+                <input type="radio" id="star-3-half" class="input-identifier"name="rating" value="8.0"> <label class="half label-icon" for="star-3-half" title="3 half stars"></label>
+                <input type="radio" id="star-3" class="input-identifier"name="rating" value="7.0"> <label class="full label-icon" for="star-3" title="3 stars"></label>
+                input type="radio" id="star-2-half" class="input-identifier"name="rating" value="6.0"> <label class="half label-icon" for="star-2-half" title="2 half stars"></label>
+                <input type="radio" id="star-2" class="input-identifier"name="rating" value="5.0"> <label class="full label-icon" for="star-2" title="2 stars"></label>
+                <input type="radio" id="star-1-half" class="input-identifier"name="rating" value="4.0"> <label class="half label-icon" for="star-1-half" title="1 half stars"></label>
+                <input type="radio" id="star-1" class="input-identifier"name="rating" value="3.0"> <label class="full label-icon" for="star-1" title="1 stars"></label>
+                <input type="radio" id="star-0-half" class="input-identifier"name="rating" value="2.0"> <label class="half label-icon" for="star-0-half" title="0 half stars"></label>
+            </fieldset>
+        </form>
+        
+        </div>
+    </li> -->
+
+
+<!--js file source-->
+<script type="module" src="movie.js"></script>
+</body>
+</html>
