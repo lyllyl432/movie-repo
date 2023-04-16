@@ -60,21 +60,45 @@
 #account .content-row .content-wrapper:last-child{
     margin-left: 1.5rem;
 }
-#account .content-row .content-wrapper .ring-percent{
+/* #account .content-row .content-wrapper .ring-percent{
     width: 4rem;
     height: 4rem;
     padding: 0.3rem;
     border-radius: 50%;
     text-align: center;
     background: var(--color-bg-1);
-}
-#account .content-row .content-wrapper .ring-percent .circle{
+} */
+/* #account .content-row .content-wrapper .ring-percent .circle{
     height: 100%;
     border: 2px solid var(--color-bg-4);
     border-radius: 50%;
     display: grid;
     place-items: center;
+} */
+.circular-progress{
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+.inner-circle{
+    position: absolute;
+    width: calc(4rem - 0.9rem);
+    height: calc(4rem - 0.9rem);
+    border-radius: 50%;
+    background: yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.percentage{
+    position: relative;
+    font-size: 1.1rem;
+}
+
 #account .content-row .content-wrapper .text{
     margin: 0 1rem;
 }
@@ -142,13 +166,16 @@
     font-size: 1rem;
 }
 .filter-container .sort-container{
+    position: relative;
     display: flex;
-    align-items: center;
+    align-items: center; 
+    cursor: pointer;
 }
 .filter-container .sort-container .dropdown-filters{
     position: relative;
     display: flex;
     flex-direction: column;
+    padding: 0 1rem;
     z-index: 999;
 }
 .filter-container .sort-container .dropdown-filters .sort-text{
@@ -163,8 +190,22 @@
     display: none;
 }
 .filter-container .sort-container .filters{
+    position: absolute;
     display: none;
+    top: 0;
+    left: 0;
+    background: var(--color-white);
+    padding: 4rem 1rem 0.5rem;
+    z-index: 2;
+    border: 1px solid var(--color-black-variant);  
 }
+.filter-container .sort-container .filters.show{
+    display: block;
+}
+.filter-container .sort-container .filters li a{
+    color: var(--color-black);
+}
+
 .filter-container .order-container{
     display: flex;
     align-items: center;
@@ -180,12 +221,17 @@
     padding: 0 0 1.5rem 0;
 }
 #list .movie-container{
+    display: none;
+}   
+#list .movie-container.show {
+    display: block;
     display: grid;
     grid-template-columns: 10% 80%;
     border: 1px solid var(--color-white);
     place-items: center;
-    border-radius: 0.80rem;
+    border-radius: 0.8rem;
     box-shadow: 0 0 10px var(--color-black);
+    margin-bottom: 1rem;
 }
 #list .list-img{
     width: 100%;

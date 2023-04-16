@@ -67,13 +67,13 @@ const displayHighMovies = (data,url)=>{
             url = "https://image.tmdb.org/t/p/w500";
             poster_path = poster_path;
         }
-        divElement.innerHTML = `<a href ="/movie.html"><div class="box-image">
+        divElement.innerHTML = `<a href ="/movie-app/movie.html"><div class="box-image">
         <img src="${url + poster_path}" alt="${title}">
     <div class="box-item-info">
         <h4>${title}</h4>
         <small>${release_date}</small>
-        <p>${popularity}</p></a>
-    </div>`
+        <p>${popularity}</p>
+    </div></a>`
     boxContainer.appendChild(divElement);
     idArray.push(id);
     AllStorage.setAllStorage(idArray);
@@ -116,7 +116,7 @@ const displayMovies = (data,url)=>{
         divElement.classList.add("swiper-slide")
         divElement.classList.add("movie");
         divElement.dataset.id = id;
-        divElement.innerHTML = `<a href ="/movie.html">
+        divElement.innerHTML = `<a href ="/movie-app/movie.html">
  
         <img src="${url + poster_path}" alt="${title}">
         <div class="movie-info">

@@ -90,16 +90,16 @@
 }
 #rating-system .rating-identifier{
     display: none;
+}
+#rating-system .rating-identifier.show{
+    display: block;
     position: absolute;
-    left: -5%;
+    left: 0;
     margin-top: 0.5rem;
     padding: 0.5rem 1rem;
     background: var( --color-bg-1);
     max-width: 6rem;
     text-align: center;
-}
-#rating-system .rating-identifier.show{
-    display: block;
 }
 #rating-system .rating-identifier::before{
     content: "\f0d8";

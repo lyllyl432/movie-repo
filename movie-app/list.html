@@ -60,8 +60,11 @@
                 <div class="content-row">
                     <div class="content-wrapper">
                         <div class="ring-percent">
-                            <div class="circle">
-                                <h6 class="circle-num">0%</h6>
+                            <div class="circular-progress" data-percentage="10"
+                            data-progress-color = "#fff" data-inner-circle-color="#087CA7" data-bg-color = "#000">
+                                <div class="inner-circle">
+                                    <p class="percentage">0%</p>
+                                </div>
                             </div>
                         </div>  
                         <div class="text">Average <br>Movie Score</div>
@@ -81,12 +84,12 @@
         <!--Shortcut bar-->
         <div id="shortcut-bar">
             <div class="container">
-                <ul class="shortcut-bar-menu">
-                    <li><a href="#">Overview<i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
-                    <li><a href="#">Discussions</a></li>
-                    <li><a href="#">Lists</a></li>
-                    <li><a href="#">Ratings<i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
-                    <li><a class="active" href="#">Watchlist<i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
+                <ul role="list" class="shortcut-bar-menu">
+                    <li role="list-item"><a href="#">Overview<i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
+                    <li role="list-item"><a href="#">Discussions</a></li>
+                    <li role="list-item"><a href="#">Lists</a></li>
+                    <li role="list-item"><a href="#">Ratings<i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
+                    <li role="list-item"><a class="active" href="#">Watchlist<i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -98,9 +101,9 @@
                     <div class="message-icon">
                         <img src="img/message icon.svg" alt="">
                     </div>
-                    <ul class="shortcut-bar-menu">
-                        <li><a class="active" href="#">Movies <span class="counter">1</span></a></li>
-                        <li><a href="#">TV <span class="counter">1</span></a></li>
+                    <ul role="list" class="shortcut-bar-menu">
+                        <li role="listitem"><a class="active" href="#">Movies <span class="counter">1</span></a></li>
+                        <li role="listitem"><a href="#">TV <span class="counter">1</span></a></li>
                     </ul>
 
                 </div>
@@ -113,11 +116,11 @@
                         <span id="sort-popularity" class="sort-text hide">Popularity<i class="fa-sharp fa-solid fa-caret-down"></i></span>
                         <span id="sort-release-date" class="sort-text hide">Release Date<i class="fa-sharp fa-solid fa-caret-down"></i></span>
                     </div>
-                    <ul class="filters">
-                        <li><a href="">Upcoming</a></li>
-                        <li><a href="">Date Added</a></li>
-                        <li><a href="">Popularity</a></li>
-                        <li><a href="">Release Date</a></li>
+                    <ul role="list" class="filters">
+                        <li role="listitem"><a href="#" class="upcoming-filter">Upcoming</a></li>
+                        <li role="listitem"><a href="#" class="date-filter">Date Added</a></li>
+                        <li role="listitem"><a href="#" class="popularity-filter">Popularity</a></li>
+                        <li role="listitem"><a href="#" class="vote-filter">Release Date</a></li>
                     </ul>
                 </div>
                 <div class="order-container">
@@ -132,7 +135,8 @@
     </div>  
         <div id="list">
             <div class="list-container">
-                <!-- <div class="list-img">
+                <div id="sort-date-wrapper">
+                     <!-- <div class="list-img">
                     <img src="${IMAGE_URL + poster_path}" alt="watched movie">
                 </div>
                 <div class="details">
@@ -169,6 +173,81 @@
                         </div>
                     </div>
                 </div> -->
+                </div>
+                <div id="sort-popularity-wrapper"> <!-- <div class="list-img">
+                    <img src="${IMAGE_URL + poster_path}" alt="watched movie">
+                </div>
+                <div class="details">
+                    <div class="head-details-wrapper">
+                        <div class="ring-percent">
+                            <div class="circle">
+                                <h6 class="circle-num">${percentage}%</h6>
+                            </div>
+                        </div>
+                        <div class="title-wrapper">
+                            <h3 class="title">${title}</h3>
+                            <small class="date">${release_date}</small>
+                        </div>
+                    </div>
+                        <div class="overview">
+                            <p>${overview}</p>
+                        </div>
+                        <div class="action-bar">
+                        <div class="rating-bar">
+                            <button class="rating-bar-btn" data-id=${id}><i class="fa-regular fa-star"></i></button>
+                            <span>Your rating</span>
+                        </div>
+                        <div class="favorite-bar">
+                            <button class="favorite-bar-btn" data-id=${id}><i class="fa-regular fa-heart"></i></button>
+                            <span>Favorite</span>
+                        </div>
+                        <div class="add-bar">
+                            <button class="add-bar-btn" data-id=${id}><i class="fa-solid fa-list"></i></button>
+                            <span>Add to list</span>
+                        </div>
+                        <div class="remove-bar">
+                            <button class="remove-bar-btn" data-id=${id}><i class="fa-solid fa-x"></i></button>
+                            <span>Remove</span>
+                        </div>
+                    </div>
+                </div> --></div>
+                <div id="sort-vote-wrapper"> <!-- <div class="list-img">
+                    <img src="${IMAGE_URL + poster_path}" alt="watched movie">
+                </div>
+                <div class="details">
+                    <div class="head-details-wrapper">
+                        <div class="ring-percent">
+                            <div class="circle">
+                                <h6 class="circle-num">${percentage}%</h6>
+                            </div>
+                        </div>
+                        <div class="title-wrapper">
+                            <h3 class="title">${title}</h3>
+                            <small class="date">${release_date}</small>
+                        </div>
+                    </div>
+                        <div class="overview">
+                            <p>${overview}</p>
+                        </div>
+                        <div class="action-bar">
+                        <div class="rating-bar">
+                            <button class="rating-bar-btn" data-id=${id}><i class="fa-regular fa-star"></i></button>
+                            <span>Your rating</span>
+                        </div>
+                        <div class="favorite-bar">
+                            <button class="favorite-bar-btn" data-id=${id}><i class="fa-regular fa-heart"></i></button>
+                            <span>Favorite</span>
+                        </div>
+                        <div class="add-bar">
+                            <button class="add-bar-btn" data-id=${id}><i class="fa-solid fa-list"></i></button>
+                            <span>Add to list</span>
+                        </div>
+                        <div class="remove-bar">
+                            <button class="remove-bar-btn" data-id=${id}><i class="fa-solid fa-x"></i></button>
+                            <span>Remove</span>
+                        </div>
+                    </div>
+                </div> --></div>
             </div>
         </div>
     </main>
