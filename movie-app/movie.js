@@ -38,14 +38,15 @@ export class ButtonMethods{
 }
 //add method to the prototype so that it can be only use once in every instance
 ButtonMethods.prototype.getCheckList = ()=>{
-    const checkBtn = document.querySelector(".checkList");
-    let id = checkBtn.dataset.id;
+    const addBtn = document.querySelector(".add-bar-btn");
+    let id = addBtn.dataset.id;
     let idFound = WatchedStorage.getLocalStorage().find(movieId => movieId == id);
+    console.log(id)
     if(idFound){
-        checkBtn.disabled = true;
-        checkBtn.classList.add("added");
+        addBtn.disabled = true;
+        addBtn.classList.add("added");
     }
-    checkBtn.addEventListener("click", e=>{
+    addBtn.addEventListener("click", e=>{
         const newWatched = LocalStorage.getLocalStorage();
         console.log(newWatched);
         const watched = WatchedStorage.getLocalStorage();
@@ -53,11 +54,11 @@ ButtonMethods.prototype.getCheckList = ()=>{
         WatchedStorage.setLocalStorage(watched);
         const currTarget = e.currentTarget;
         currTarget.disabled = true;
-        checkBtn.classList.add("added");
+        e.currentTarget.classList.add("added");
     })
 } 
 ButtonMethods.prototype.getFavorite = ()=>{
-    const favoriteBtn = document.querySelector(".favoriteList");
+    const favoriteBtn = document.querySelector(".favorite-bar-btn");
     let id = favoriteBtn.dataset.id;
     let idFound = FavoriteStorage.getLocalStorage().find(movieId => movieId == id);
     if(idFound){
@@ -207,31 +208,31 @@ const displayMovie = (data)=>{
     const buttonElement = document.createElement("ul");
     buttonElement.setAttribute("role","list");
     buttonElement.classList.add("button-wrapper");
-    buttonElement.innerHTML = `<li role="list-item"><a href="" class="btn checkList" data-id = ${id}><i role="list-item" class="fa-regular fa-bookmark"></i></a></li>
-    <li role="list-item"><a href="" class="btn favoriteList" data-id = ${id}><i class="fa-solid fa-heart"></i></a></li>
-    <li id="rating-system">
-        <div class="ratings-container">
-        <a class="btn rate-btn" data-id = ${id}><i class="fa-solid fa-star"></i></a>
-        <div class="rating-identifier">
-        <span id="rating-value">Rate It!</span>
-    </div>
-    <form action="" id="rating-form">
-    <fieldset id="rating" data-id=${id}>
-        <input type="radio" id="star-5" class="input-identifier" name="rating" value="10.0" data-num ="10" data-id=${id}> <label class="full label-icon" for="star-5" title="5 stars"></label>
-        <input type="radio" id="star-4-half" class="input-identifier"name="rating" value="9.0" data-num ="9" data-id=${id}> <label class="half label-icon" for="star-4-half" title="4 half stars"></label>
-        <input type="radio" id="star-4" class="input-identifier"name="rating" value="8.0" data-num ="8" data-id=${id}"> <label class="full label-icon" for="star-4" title="4 stars"></label>
-        <input type="radio" id="star-3-half" class="input-identifier"name="rating" value="7.0" data-num ="7" data-id=${id}> <label class="half label-icon" for="star-3-half" title="3 half stars"></label>
-        <input type="radio" id="star-3" class="input-identifier"name="rating" value="6.0" data-num ="6" data-id=${id}> <label class="full label-icon" for="star-3" title="3 stars"></label>
-        <input type="radio" id="star-2-half" class="input-identifier"name="rating" value="5.0" data-num ="5" data-id=${id}> <label class="half label-icon" for="star-2-half" title="2 half stars"></label>
-        <input type="radio" id="star-2" class="input-identifier"name="rating" value="4.0" data-num ="4" data-id=${id}> <label class="full label-icon" for="star-2" title="2 stars"></label>
-        <input type="radio" id="star-1-half" class="input-identifier"name="rating" value="3.0" data-num ="3" data-id=${id}> <label class="half label-icon" for="star-1-half" title="1 half stars"></label>
-        <input type="radio" id="star-1" class="input-identifier"name="rating" value="2.0" data-num ="2" data-id=${id}> <label class="full label-icon" for="star-1" title="1 stars"></label>
-        <input type="radio" id="star-0-half" class="input-identifier"name="rating" value="1.0" data-num ="1" data-id=${id}> <label class="half label-icon" for="star-0-half" title="0 half stars"></label>
-    </fieldset>
-</form>
-        
-        </div>
-    </li>
+    buttonElement.innerHTML = ` <button class="btn add-bar-btn" data-id = ${id}><i role="list-item" class="fa-regular fa-bookmark"></i></button>
+    <button href="" class="btn favorite-bar-btn" data-id = ${id}><i class="fa-solid fa-heart"></i></button>
+     <div id="rating-system">
+         <div class="ratings-container">
+         <button class="btn rate-btn" data-id = ${id}><i class="fa-solid fa-star"></i></button>
+         <div class="rating-identifier">
+         <span id="rating-value">Rate It!</span>
+     </div>
+     <form action="" id="rating-form">
+     <fieldset id="rating" data-id=${id}>
+         <input type="radio" id="star-5" class="input-identifier" name="rating" value="10.0" data-num ="10" data-id=${id}> <label class="full label-icon" for="star-5" title="5 stars"></label>
+         <input type="radio" id="star-4-half" class="input-identifier"name="rating" value="9.0" data-num ="9" data-id=${id}> <label class="half label-icon" for="star-4-half" title="4 half stars"></label>
+         <input type="radio" id="star-4" class="input-identifier"name="rating" value="8.0" data-num ="8" data-id=${id}"> <label class="full label-icon" for="star-4" title="4 stars"></label>
+         <input type="radio" id="star-3-half" class="input-identifier"name="rating" value="7.0" data-num ="7" data-id=${id}> <label class="half label-icon" for="star-3-half" title="3 half stars"></label>
+         <input type="radio" id="star-3" class="input-identifier"name="rating" value="6.0" data-num ="6" data-id=${id}> <label class="full label-icon" for="star-3" title="3 stars"></label>
+         <input type="radio" id="star-2-half" class="input-identifier"name="rating" value="5.0" data-num ="5" data-id=${id}> <label class="half label-icon" for="star-2-half" title="2 half stars"></label>
+         <input type="radio" id="star-2" class="input-identifier"name="rating" value="4.0" data-num ="4" data-id=${id}> <label class="full label-icon" for="star-2" title="2 stars"></label>
+         <input type="radio" id="star-1-half" class="input-identifier"name="rating" value="3.0" data-num ="3" data-id=${id}> <label class="half label-icon" for="star-1-half" title="1 half stars"></label>
+         <input type="radio" id="star-1" class="input-identifier"name="rating" value="2.0" data-num ="2" data-id=${id}> <label class="full label-icon" for="star-1" title="1 stars"></label>
+         <input type="radio" id="star-0-half" class="input-identifier"name="rating" value="1.0" data-num ="1" data-id=${id}> <label class="half label-icon" for="star-0-half" title="0 half stars"></label>
+     </fieldset>
+ </form>
+         
+         </div>
+     </div>
 `
     movieInfo.appendChild(overviewElement);
     movieInfo.appendChild(buttonElement);

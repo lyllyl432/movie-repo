@@ -77,19 +77,31 @@
 } */
 .circular-progress{
     position: relative;
-    width: 4rem;
-    height: 4rem;
+    width: 3.7rem;
+    height: 3.7rem;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid var(--color-bg-4);
+}
+.circular-progress-sm{
+    width:2.5rem;
+    height:2.5rem;
+}
+.circular-progress.circular-progress-sm .inner-circle{
+    width: calc(3rem - 0.9rem);
+    height: calc(3rem - 0.9rem);
+}
+.circular-progress.circular-progress-sm .inner-circle .percentage{
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 .inner-circle{
     position: absolute;
     width: calc(4rem - 0.9rem);
     height: calc(4rem - 0.9rem);
     border-radius: 50%;
-    background: yellow;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -270,16 +282,16 @@
     align-items: center;
     gap: 1rem;
 }
-.action-bar .rating-bar .rating-bar-btn,
-.favorite-bar-btn, .add-bar-btn, .remove-bar-btn{
+.action-bar .rating-bar .rating-bar-btn, .favorite-bar-btn, .add-bar-btn, .remove-bar-btn {
     border-radius: 50%;
-    padding: 0.35rem 0.33rem;
+    padding: 0.35rem 0.6rem;
     border: none;
     cursor: pointer;
     outline: none;
     background: transparent;
     border: 1px solid var(--color-white-variant);
     color: var(--color-white);
+    font-size: 0.8rem;
 }
 
 .action-bar .rating-bar .rating-bar-btn:hover,

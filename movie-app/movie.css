@@ -70,12 +70,15 @@
     display: flex;
     gap: 0.5rem;
 }
-.movie-container .checkList.added .fa-bookmark{
+.movie-container .add-bar-btn.added .fa-bookmark{
     color: var(--color-danger);
 }
 /* .movie-container .btn:hover .checkList.added{
     background: none;
 } */
+.movie-container .favorite-bar-btn.added .fa-heart{
+    color: var(--color-favorite);
+}
 /*--Rating*/
 #rating-system{
     position: relative;

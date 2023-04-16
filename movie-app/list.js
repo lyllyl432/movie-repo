@@ -1,25 +1,24 @@
-import { WatchedStorage, ButtonMethods} from "./movie.js";
-import {API_KEY, BASE_URL,IMAGE_URL} from "./app.js";
-class UserUpdate{
-    updatePercentage(){
+import { WatchedStorage, ButtonMethods,FavoriteStorage } from "./movie.js";
+import { API_KEY, BASE_URL, IMAGE_URL } from "./app.js";
+class UserUpdate {
+    updatePercentage() {
         const circularProgress = document.querySelectorAll(".circular-progress");
-        circularProgress.forEach((progressBar)=> {
+        circularProgress.forEach((progressBar) => {
             const innerCircle = progressBar.querySelector(".inner-circle");
             let percentage = progressBar.dataset.percentage,
-            percentageTextWrap = progressBar.querySelector(".percentage"),
-            progressColor = progressBar.dataset.progressColor;
+                percentageTextWrap = progressBar.querySelector(".percentage"),
+                progressColor = progressBar.dataset.progressColor;
             percentageTextWrap.textContent = `${percentage}` + "%";
             //innerCircle bg color
             innerCircle.style.background = progressBar.dataset.innerCircleColor;
             //progressBar bg color
-            progressBar.style.background = `conic-gradient(${progressColor} ${
-                Number(percentage) * 3.6
-              }deg,${progressBar.getAttribute("data-bg-color")} 0deg)`;
+            progressBar.style.background = `conic-gradient(${progressColor} ${Number(percentage) * 3.6
+                }deg,${progressBar.getAttribute("data-bg-color")} 0deg)`;
         })
     }
 }
-class FilterMethods{
-    filterUtilities(showDate,showPopular,showRelease){
+class FilterMethods {
+    filterUtilities(showDate, showPopular, showRelease) {
         const movieContainer = document.querySelectorAll(".movie-container");
         const sortText = document.querySelectorAll(".sort-text");
         const sortContainer = document.querySelector(".sort-container");
@@ -29,125 +28,124 @@ class FilterMethods{
         const voteLink = document.querySelector(".vote-filter");
 
         //mouseover and mouseout the ul
-        sortContainer.addEventListener("mouseover",()=>{
+        sortContainer.addEventListener("mouseover", () => {
             filters.classList.add("show");
         })
-        sortContainer.addEventListener("mouseout",()=>{
+        sortContainer.addEventListener("mouseout", () => {
             filters.classList.remove("show");
         })
         //filter by date
-        dateLink.addEventListener("click",()=>{
-          this.showDateFilter(movieContainer);
+        dateLink.addEventListener("click", () => {
+            this.showDateFilter(movieContainer);
         })
-        popularityLink.addEventListener("click",()=>{
+        popularityLink.addEventListener("click", () => {
             this.showPopularFilter(movieContainer);
         })
-        voteLink.addEventListener("click",()=>{
+        voteLink.addEventListener("click", () => {
             this.showReleaseFilter(movieContainer);
         })
 
         // remain the class with the use of local storage
-        if(showDate === "enabled"){
-            this.showDateFilter(movieContainer,showDate);
-        }else if(showPopular === "enabled"){
-            this.showPopularFilter(movieContainer,showPopular);
-        }else if(showRelease === "enabled"){
-            this.showReleaseFilter(movieContainer,showRelease)
+        if (showDate === "enabled") {
+            this.showDateFilter(movieContainer, showDate);
+        } else if (showPopular === "enabled") {
+            this.showPopularFilter(movieContainer, showPopular);
+        } else if (showRelease === "enabled") {
+            this.showReleaseFilter(movieContainer, showRelease)
         }
-    } 
+    }
     //callback functions for event listeners in filter links
-    showDateFilter(containers){
+    showDateFilter(containers) {
         localStorage.removeItem("release-filter");
         localStorage.removeItem("popularity-filter");
-            for(let container of containers){
-                container.classList.remove("show")
-                if(container.classList.contains("sort-by-date")){
-                    container.classList.add("show");
-                    localStorage.setItem("date-filter","enabled");
-                 }
+        for (let container of containers) {
+            container.classList.remove("show")
+            if (container.classList.contains("sort-by-date")) {
+                container.classList.add("show");
+                localStorage.setItem("date-filter", "enabled");
             }
         }
-    showPopularFilter(containers){
+    }
+    showPopularFilter(containers) {
         localStorage.removeItem("release-filter");
         localStorage.removeItem("date-filter");
-        for(let container of containers){
+        for (let container of containers) {
             container.classList.remove("show")
-            if(container.classList.contains("sort-by-popular")){
+            if (container.classList.contains("sort-by-popular")) {
                 container.classList.add("show");
-                localStorage.setItem("popularity-filter","enabled");
-             }
+                localStorage.setItem("popularity-filter", "enabled");
+            }
         }
     }
-    showReleaseFilter(containers){
+    showReleaseFilter(containers) {
         localStorage.removeItem("date-filter");
         localStorage.removeItem("popularity-filter");
-        for(let container of containers){
+        for (let container of containers) {
             container.classList.remove("show")
-            if(container.classList.contains("sort-by-release")){
+            if (container.classList.contains("sort-by-release")) {
                 container.classList.add("show");
-                localStorage.setItem("release-filter","enabled");
-             }
+                localStorage.setItem("release-filter", "enabled");
+            }
         }
     }
 
-  
-}
 
+}
 
 
 
 //sort data by vote average
-const sortByRelease = (data,container,sortWrap)=>{
-    let sortedData = data.sort(({vote_average:a},{vote_average:b})=>{
+const sortByRelease = (data, container, sortWrap) => {
+    let sortedData = data.sort(({ vote_average: a }, { vote_average: b }) => {
         let voteA = a;
         let voteB = b;
         return voteA - voteB;
     })
-    displaySortMovies(sortedData,container,sortWrap);
+    displaySortMovies(sortedData, container, sortWrap);
     const movieContainer = sortWrap.querySelectorAll(".movie-container");
-    for(let movie of movieContainer){
+    for (let movie of movieContainer) {
         movie.classList.add("sort-by-release");
-       }
+    }
 }
 //sort data by popularity
-const sortByPopularity = (data,container,sortWrap)=>{
-    let sortedData = data.sort(({popularity:a},{popularity:b})=>{
+const sortByPopularity = (data, container, sortWrap) => {
+    let sortedData = data.sort(({ popularity: a }, { popularity: b }) => {
         let popularA = a;
         let popularB = b;
         return popularB - popularA;
     })
-    displaySortMovies(sortedData,container,sortWrap);
+    displaySortMovies(sortedData, container, sortWrap);
     const movieContainer = sortWrap.querySelectorAll(".movie-container");
-    for(let movie of movieContainer){
+    for (let movie of movieContainer) {
         movie.classList.add("sort-by-popular");
-       }
-    
+    }
+
 
 }
 //sort data by dates
-const sortByDate = (data,container,sortWrap)=>{
-   let sortedData = data.sort(({release_date: a},{release_date: b})=>{
-     let dataA = new Date(a);
-     let dataB = new Date(b);
-     return dataA - dataB;
-   })
-   displaySortMovies(sortedData,container,sortWrap);
-   const movieContainer = sortWrap.querySelectorAll(".movie-container");
-   for(let movie of movieContainer){
-    movie.classList.add("sort-by-date");
-   }
+const sortByDate = (data, container, sortWrap) => {
+    let sortedData = data.sort(({ release_date: a }, { release_date: b }) => {
+        let dataA = new Date(a);
+        let dataB = new Date(b);
+        return dataA - dataB;
+    })
+    displaySortMovies(sortedData, container, sortWrap);
+    const movieContainer = sortWrap.querySelectorAll(".movie-container");
+    for (let movie of movieContainer) {
+        movie.classList.add("sort-by-date");
+    }
 
 }
-const removeWatchedStorage = (id)=> {
+const removeWatchedStorage = (id) => {
     const ids = WatchedStorage.getLocalStorage();
     const newWatched = ids.filter(movieId => movieId != id);
     WatchedStorage.setLocalStorage(newWatched);
 }
 //action button functions
-ButtonMethods.prototype.removeWatchedMovie = (container)=>{
+ButtonMethods.prototype.removeWatchedMovie = (container) => {
     const removeBarBtn = document.querySelectorAll(".remove-bar-btn");
-    removeBarBtn.forEach(item =>{
-        item.addEventListener("click",e =>{
+    removeBarBtn.forEach(item => {
+        item.addEventListener("click", e => {
             const currentElem = e.currentTarget;
             const id = currentElem.dataset.id;
             console.log(id);
@@ -255,9 +253,9 @@ ButtonMethods.prototype.removeWatchedMovie = (container)=>{
 //     })
 // }
 //display date filter movies
-export const displaySortMovies = (data,container,sortWrap)=>{
-    data.forEach(movie =>{
-        const {poster_path,title,release_date,overview,id,vote_average} = movie;
+export const displaySortMovies = (data, container, sortWrap) => {
+    data.forEach(movie => {
+        const { poster_path, title, release_date, overview, id, vote_average } = movie;
         const percentage = Math.round((vote_average / 10) * 100);
         const divElem = document.createElement("div");
         divElem.classList.add("movie-container");
@@ -267,11 +265,14 @@ export const displaySortMovies = (data,container,sortWrap)=>{
     </div>
     <div class="details">
         <div class="head-details-wrapper">
-            <div class="ring-percent">
-                <div class="circle">
-                    <h6 class="circle-num">${percentage}%</h6>
-                </div>
+        <div class="ring-percent">
+        <div class="circular-progress circular-progress-sm" data-percentage="10"
+        data-progress-color = "#fff" data-inner-circle-color="#087CA7" data-bg-color = "#000">
+            <div class="inner-circle">
+                <p class="percentage">0%</p>
             </div>
+        </div>
+    </div>  
             <div class="title-wrapper">
                 <h3 class="title">${title}</h3>
                 <small class="date">${release_date}</small>
@@ -299,14 +300,14 @@ export const displaySortMovies = (data,container,sortWrap)=>{
             </div>
         </div>
     </div>`;
-    sortWrap.appendChild(divElem);
-    container.appendChild(sortWrap);
+        sortWrap.appendChild(divElem);
+        container.appendChild(sortWrap);
     })
 }
 //fetch the movie using the find URL in API and use the get local storage
 //use the specific id
-export const fetchSpecificDetails = async(movieIds)=>{
-    const mapData = Promise.all(movieIds.map( async (id) => {
+export const fetchSpecificDetails = async (movieIds) => {
+    const mapData = Promise.all(movieIds.map(async (id) => {
         const FIND_URL = BASE_URL + "/movie/" + id + "?" + API_KEY + "&language=en-US";
         const data = await fetch(FIND_URL);
         const result = await data.json();
@@ -315,31 +316,42 @@ export const fetchSpecificDetails = async(movieIds)=>{
     const dataResult = await mapData;
     return dataResult;
 }
-window.addEventListener("load",()=>{    
+window.addEventListener("load", () => {
+    //favorite storage list
+    const favoriteStorage = FavoriteStorage.getLocalStorage();
+
+    //for DOM manipulation
     const listContainer = document.querySelector(".list-container");
     const sortDateWrap = document.querySelector("#sort-date-wrapper");
     const sortPopularityWrap = document.querySelector("#sort-popularity-wrapper");
     const sortVoteWrap = document.querySelector("#sort-vote-wrapper");
+
+    //utilities
     const buttonUtilities = new ButtonMethods();
     const filter = new FilterMethods();
     const updateUser = new UserUpdate();
-    let showMovies = [localStorage.getItem("date-filter"),localStorage.getItem("popularity-filter"),localStorage.getItem("release-filter")];
+    let showMovies = [localStorage.getItem("date-filter"), localStorage.getItem("popularity-filter"), localStorage.getItem("release-filter")];
     console.log(showMovies);
     const movieIds = WatchedStorage.getLocalStorage();
     //update user percentage;
     updateUser.updatePercentage();
     //sort by date
     fetchSpecificDetails(movieIds).then(data => {
-        sortByDate(data,listContainer,sortDateWrap);
-        sortByPopularity(data,listContainer,sortPopularityWrap);
-        sortByRelease(data,listContainer,sortVoteWrap);
-    }).then((data)=> {
+        sortByDate(data, listContainer, sortDateWrap);
+        sortByPopularity(data, listContainer, sortPopularityWrap);
+        sortByRelease(data, listContainer, sortVoteWrap);
+    }).then((data) => {
+        //ui of movie percentage
+        updateUser.updatePercentage();
         console.log(data);
-         //remove list
-         buttonUtilities.removeWatchedMovie(listContainer)
-         //click filter
-         filter.filterUtilities(...showMovies);
-       })
+        //remove list
+        buttonUtilities.removeWatchedMovie(listContainer)
+        //click filter
+        filter.filterUtilities(...showMovies);
+        //ui update of button
+        //last to code rating
+        buttonUtilities.getFavorite();
+    })
 })
 
 
