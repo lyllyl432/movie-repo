@@ -77,22 +77,28 @@ ButtonMethods.prototype.getFavorite = ()=>{
     })
 }
 ButtonMethods.prototype.getRatings = (ratingIdentifier,ratingValue)=>{
-    const rateBtn = document.querySelector(".rate-btn");
-    const ratingForm = document.querySelector("#rating-form");
+    const rateBtn = document.querySelectorAll(".rate-btn");
+    const ratingSystem = document.querySelector("#rating-system");
+    const ratingForm = document.querySelectorAll(".rating-form");
     const stars = document.querySelectorAll(".label-icon");
+    const fieldsetRating = document.querySelectorAll(".rating-fieldset");
     let ratingArr = [];
-    rateBtn.addEventListener("click",e=>{
-        showRating(e,ratingForm,ratingIdentifier);
-    });
+    rateBtn.forEach(btn => {
+        btn.addEventListener("click",e=>{
+            showRating(e,fieldsetRating);
+        });
+    })
     window.addEventListener("click",e=>{
         hideRating(e,ratingForm);
     });
-    rateBtn.addEventListener("mouseover", ()=>{
-        showRatingText(ratingIdentifier);
-    });
-    rateBtn.addEventListener("mouseout", ()=>{
-        removeRatingText(ratingIdentifier);
-    });
+    rateBtn.forEach(btn => {
+        btn.addEventListener("mouseover", ()=>{
+            showRatingText(ratingIdentifier);
+        });
+        btn.addEventListener("mouseout", ()=>{
+            removeRatingText(ratingIdentifier);
+        });
+    })
     for( let star of stars){
         star.addEventListener("click", function(){
             this.previousElementSibling.checked = true;
@@ -113,7 +119,7 @@ ButtonMethods.prototype.getRatings = (ratingIdentifier,ratingValue)=>{
         });
     }
 }
-ButtonMethods.prototype.onLoadRating = (ratingIdentifier,ratingValue)=>{
+ButtonMethods.prototype.onLoadRating = (ratingValue)=>{
     const ratingField = document.querySelector("#rating");
     console.log(ratingValue);
     const oddOnes = [];
@@ -137,14 +143,23 @@ ButtonMethods.prototype.onLoadRating = (ratingIdentifier,ratingValue)=>{
     }
 }
 const hideRating = (e,ratingForm)=>{
-    if (!ratingForm.contains(e.target)) {
-        ratingForm.classList.remove("show");
-    }
+    ratingForm.forEach(form => {
+        if (!form.contains(e.target)) {
+            form.classList.remove("show");
+        }
+    })
 }
-const showRating = function(e,ratingForm,ratingIdentifier){
+const showRating = function(e,fieldset){
     e.stopPropagation();
-    ratingForm.classList.add("show");
-    ratingIdentifier.classList.remove("show");
+    fieldset.forEach(set => {
+        set.parentElement.classList.remove("show");
+        console.log(set);
+        const id = e.target.dataset.id;
+        const fieldId = set.dataset.id;
+        if(id === fieldId){
+            set.parentElement.classList.add("show");
+        }
+    })
 }
 const showRatingText = (ratingIdentifier)=>{
     ratingIdentifier.classList.add("show");
@@ -154,7 +169,6 @@ const removeRatingText = (ratingIdentifier)=>{
 }
 //display movie in DOM
 const displayMovie = (data)=>{
-    console.log(data);
     const {poster_path,title,release_date,status,genres,runtime,tagline,overview,id} = data
     const year = release_date.slice(0,4);
     featuredMovieContainer.style.backgroundImage = `url(${IMAGE_URL + poster_path})`;
@@ -212,12 +226,12 @@ const displayMovie = (data)=>{
     <button href="" class="btn favorite-bar-btn" data-id = ${id}><i class="fa-solid fa-heart"></i></button>
      <div id="rating-system">
          <div class="ratings-container">
-         <button class="btn rate-btn" data-id = ${id}><i class="fa-solid fa-star"></i></button>
+         <button class="btn rate-btn rate-btn--sm" data-id = ${id}><i data-id = ${id} class="fa-solid fa-star"></i></button>
          <div class="rating-identifier">
          <span id="rating-value">Rate It!</span>
      </div>
-     <form action="" id="rating-form">
-     <fieldset id="rating" data-id=${id}>
+     <form action="" id="rating-form-handler" class="rating-form">
+     <fieldset id="rating" class="rating-fieldset" data-id=${id}>
          <input type="radio" id="star-5" class="input-identifier" name="rating" value="10.0" data-num ="10" data-id=${id}> <label class="full label-icon" for="star-5" title="5 stars"></label>
          <input type="radio" id="star-4-half" class="input-identifier"name="rating" value="9.0" data-num ="9" data-id=${id}> <label class="half label-icon" for="star-4-half" title="4 half stars"></label>
          <input type="radio" id="star-4" class="input-identifier"name="rating" value="8.0" data-num ="8" data-id=${id}"> <label class="full label-icon" for="star-4" title="4 stars"></label>
@@ -243,7 +257,6 @@ const displayMovie = (data)=>{
 //use the specific id
 const fetchSpecificDetails = async()=>{
     const id = LocalStorage.getLocalStorage().toString();
-    console.log(id);
     const FIND_URL = BASE_URL + "/movie/" + id + "?" + API_KEY + "&language=en-US";
     const data = await fetch(FIND_URL);
     const result = await data.json();

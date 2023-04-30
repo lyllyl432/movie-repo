@@ -91,9 +91,6 @@ class FilterMethods {
 
 
 }
-
-
-
 //sort data by vote average
 const sortByRelease = (data, container, sortWrap) => {
     let sortedData = data.sort(({ vote_average: a }, { vote_average: b }) => {
@@ -154,105 +151,7 @@ ButtonMethods.prototype.removeWatchedMovie = (container) => {
         })
     })
 }
-//display date filter movies
-// export const displaySortVote = (data,container)=>{
-//     data.forEach(movie =>{
-//         const {poster_path,title,release_date,overview,id,vote_average} = movie;
-//         const percentage = Math.round((vote_average / 10) * 100);
-//         const divElem = document.createElement("div");
-//         divElem.classList.add("movie-container");
-//         divElem.classList.add("container");
-//         divElem.classList.add("sort-by-vote")
-//         divElem.innerHTML = ` <div class="list-img">
-//         <img src="${IMAGE_URL + poster_path}" alt="watched movie">
-//     </div>
-//     <div class="details">
-//         <div class="head-details-wrapper">
-//             <div class="ring-percent">
-//                 <div class="circle">
-//                     <h6 class="circle-num">${percentage}%</h6>
-//                 </div>
-//             </div>
-//             <div class="title-wrapper">
-//                 <h3 class="title">${title}</h3>
-//                 <small class="date">${release_date}</small>
-//             </div>
-//         </div>
-//             <div class="overview">
-//                 <p>${overview}</p>
-//             </div>
-//             <div class="action-bar">
-//             <div class="rating-bar">
-//                 <button class="rating-bar-btn" data-id=${id}><i class="fa-regular fa-star"></i></button>
-//                 <span>Your rating</span>
-//             </div>
-//             <div class="favorite-bar">
-//                 <button class="favorite-bar-btn" data-id=${id}><i class="fa-regular fa-heart"></i></button>
-//                 <span>Favorite</span>
-//             </div>
-//             <div class="add-bar">
-//                 <button class="add-bar-btn" data-id=${id}><i class="fa-solid fa-list"></i></button>
-//                 <span>Add to list</span>
-//             </div>
-//             <div class="remove-bar">
-//                 <button class="remove-bar-btn" data-id=${id}><i class="fa-solid fa-x"></i></button>
-//                 <span>Remove</span>
-//             </div>
-//         </div>
-//     </div>`;
-//     container.appendChild(divElem);
-//     })
-// }
-//display popular filter movies
-// export const displaySortPopular = (data,container)=>{
-//     data.forEach(movie =>{
-//         const {poster_path,title,release_date,overview,id,vote_average} = movie;
-//         const percentage = Math.round((vote_average / 10) * 100);
-//         const divElem = document.createElement("div");
-//         divElem.classList.add("movie-container");
-//         divElem.classList.add("container");
-//         divElem.classList.add("sort-by-popular")
-//         divElem.innerHTML = ` <div class="list-img">
-//         <img src="${IMAGE_URL + poster_path}" alt="watched movie">
-//     </div>
-//     <div class="details">
-//         <div class="head-details-wrapper">
-//             <div class="ring-percent">
-//                 <div class="circle">
-//                     <h6 class="circle-num">${percentage}%</h6>
-//                 </div>
-//             </div>
-//             <div class="title-wrapper">
-//                 <h3 class="title">${title}</h3>
-//                 <small class="date">${release_date}</small>
-//             </div>
-//         </div>
-//             <div class="overview">
-//                 <p>${overview}</p>
-//             </div>
-//             <div class="action-bar">
-//             <div class="rating-bar">
-//                 <button class="rating-bar-btn" data-id=${id}><i class="fa-regular fa-star"></i></button>
-//                 <span>Your rating</span>
-//             </div>
-//             <div class="favorite-bar">
-//                 <button class="favorite-bar-btn" data-id=${id}><i class="fa-regular fa-heart"></i></button>
-//                 <span>Favorite</span>
-//             </div>
-//             <div class="add-bar">
-//                 <button class="add-bar-btn" data-id=${id}><i class="fa-solid fa-list"></i></button>
-//                 <span>Add to list</span>
-//             </div>
-//             <div class="remove-bar">
-//                 <button class="remove-bar-btn" data-id=${id}><i class="fa-solid fa-x"></i></button>
-//                 <span>Remove</span>
-//             </div>
-//         </div>
-//     </div>`;
-//     container.appendChild(divElem);
-//     })
-// }
-//display date filter movies
+//display filter movies
 export const displaySortMovies = (data, container, sortWrap) => {
     data.forEach(movie => {
         const { poster_path, title, release_date, overview, id, vote_average } = movie;
@@ -282,10 +181,27 @@ export const displaySortMovies = (data, container, sortWrap) => {
                 <p>${overview}</p>
             </div>
             <div class="action-bar">
-            <div class="rating-bar">
-                <button class="rating-bar-btn" data-id=${id}><i class="fa-regular fa-star"></i></button>
-                <span>Your rating</span>
+            <div id="rating-system" class ="rating-system--width-none">
+            <div class="ratings-container">
+            <button class="btn rate-btn rate-btn--sm" data-id = ${id}><i data-id = ${id} class="fa-solid fa-star"></i></button>
+            <span>Your rating</span>
+        <form action="" id="rating-form-handler" class="rating-form">
+        <fieldset id="rating" class="rating-fieldset" data-id=${id}>
+            <input type="radio" id="star-5" class="input-identifier" name="rating" value="10.0" data-num ="10" data-id=${id}> <label class="full label-icon" for="star-5" title="5 stars"></label>
+            <input type="radio" id="star-4-half" class="input-identifier"name="rating" value="9.0" data-num ="9" data-id=${id}> <label class="half label-icon" for="star-4-half" title="4 half stars"></label>
+            <input type="radio" id="star-4" class="input-identifier"name="rating" value="8.0" data-num ="8" data-id=${id}"> <label class="full label-icon" for="star-4" title="4 stars"></label>
+            <input type="radio" id="star-3-half" class="input-identifier"name="rating" value="7.0" data-num ="7" data-id=${id}> <label class="half label-icon" for="star-3-half" title="3 half stars"></label>
+            <input type="radio" id="star-3" class="input-identifier"name="rating" value="6.0" data-num ="6" data-id=${id}> <label class="full label-icon" for="star-3" title="3 stars"></label>
+            <input type="radio" id="star-2-half" class="input-identifier"name="rating" value="5.0" data-num ="5" data-id=${id}> <label class="half label-icon" for="star-2-half" title="2 half stars"></label>
+            <input type="radio" id="star-2" class="input-identifier"name="rating" value="4.0" data-num ="4" data-id=${id}> <label class="full label-icon" for="star-2" title="2 stars"></label>
+            <input type="radio" id="star-1-half" class="input-identifier"name="rating" value="3.0" data-num ="3" data-id=${id}> <label class="half label-icon" for="star-1-half" title="1 half stars"></label>
+            <input type="radio" id="star-1" class="input-identifier"name="rating" value="2.0" data-num ="2" data-id=${id}> <label class="full label-icon" for="star-1" title="1 stars"></label>
+            <input type="radio" id="star-0-half" class="input-identifier"name="rating" value="1.0" data-num ="1" data-id=${id}> <label class="half label-icon" for="star-0-half" title="0 half stars"></label>
+        </fieldset>
+    </form>
+            
             </div>
+        </div>
             <div class="favorite-bar">
                 <button class="favorite-bar-btn" data-id=${id}><i class="fa-regular fa-heart"></i></button>
                 <span>Favorite</span>
@@ -316,7 +232,27 @@ export const fetchSpecificDetails = async (movieIds) => {
     const dataResult = await mapData;
     return dataResult;
 }
+
+//active links toggle
+const addShortcutBarUI = (links,containerBar)=>{
+    links.forEach(link => {
+        link.addEventListener("click",e =>{
+          if(link.classList.contains("active")){
+            link.className = link.className.replace("active", "");
+          }
+          e.currentTarget.classList.add("active");
+        })
+    })
+}
 window.addEventListener("load", () => {
+    //toogle active links
+    const watchListBar = document.querySelector("#watch-list-bar");
+    const watchLinks = watchListBar.querySelectorAll(".shortcut-bar-link");
+    const mainShortcutBar = document.querySelector("#main-bar");
+    const mainLinks = mainShortcutBar.querySelectorAll(".shortcut-bar-link");
+    //for watch-list shortcut bar active ui update
+    addShortcutBarUI(watchLinks,watchListBar);
+
     //favorite storage list
     const favoriteStorage = FavoriteStorage.getLocalStorage();
 
@@ -331,7 +267,6 @@ window.addEventListener("load", () => {
     const filter = new FilterMethods();
     const updateUser = new UserUpdate();
     let showMovies = [localStorage.getItem("date-filter"), localStorage.getItem("popularity-filter"), localStorage.getItem("release-filter")];
-    console.log(showMovies);
     const movieIds = WatchedStorage.getLocalStorage();
     //update user percentage;
     updateUser.updatePercentage();
@@ -340,17 +275,21 @@ window.addEventListener("load", () => {
         sortByDate(data, listContainer, sortDateWrap);
         sortByPopularity(data, listContainer, sortPopularityWrap);
         sortByRelease(data, listContainer, sortVoteWrap);
-    }).then((data) => {
+    }).then(() => {
         //ui of movie percentage
         updateUser.updatePercentage();
-        console.log(data);
         //remove list
         buttonUtilities.removeWatchedMovie(listContainer)
         //click filter
         filter.filterUtilities(...showMovies);
         //ui update of button
-        //last to code rating
-        buttonUtilities.getFavorite();
+        //update the rating when clicked
+        buttonUtilities.getRatings();
+        //active line feature to the shortcutbar links
+        
+
+       
+       
     })
 })
 

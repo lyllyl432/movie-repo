@@ -135,7 +135,7 @@
    padding-left: 0.5rem;
    vertical-align: middle;
 }
-.shortcut-bar-menu li a.active{
+.shortcut-bar-menu li .shortcut-bar-link.active{
     border-bottom: 3px solid var(--color-bg-4);   
 }
 /*--List header--*/
@@ -282,7 +282,7 @@
     align-items: center;
     gap: 1rem;
 }
-.action-bar .rating-bar .rating-bar-btn, .favorite-bar-btn, .add-bar-btn, .remove-bar-btn {
+.action-bar .rate-btn--sm, .favorite-bar-btn, .add-bar-btn, .remove-bar-btn {
     border-radius: 50%;
     padding: 0.35rem 0.6rem;
     border: none;
@@ -298,4 +298,32 @@
 .favorite-bar-btn:hover, .add-bar-btn:hover, .remove-bar-btn:hover{
     background: var(--color-white-variant);
     color: var(--color-black-variant);
+}
+
+.rating-system--width-none{
+    position: relative;
+    width: auto !important;
+}
+.rating-system--width-none .rating-form{
+    position: absolute;
+    width: 15rem;
+    transform: translateX(0) !important;
+    top: -1rem;
+    margin-top: 0 !important;
+    left: 4rem !important;
+}
+#rating-system .rating-form::before{
+    content: "\f0d8";
+    position: absolute;
+    font-size: 2rem;
+    color: var(--color-bg-2) !important;
+    font-family: FontAwesome;
+    top: 0;
+    left: -0.8rem;
+    rotate: -90deg;
+    transform: translateX(-50%);
+}
+#rating-system .rating-form #rating{
+    background: var( --color-bg-2) !important;
+    padding: 1rem;
 }

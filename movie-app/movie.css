@@ -84,7 +84,7 @@
     position: relative;
     width: 20rem;
 }
-#rating-system #rating-form{
+#rating-system .rating-form{
     display: none;
     position: absolute;
     left: -55%;
@@ -117,17 +117,17 @@
 #rating-system .rating-identifier span{
     font-size: 0.9rem;
 }
-#rating-system #rating-form.show{
+#rating-system .rating-form.show{
     display: block;
 }
-#rating-system #rating-form #rating{
+#rating-system .rating-form #rating{
     position: relative;
     background: var( --color-bg-1);
     padding: 1rem;
     outline: none;
     border: none;
 }
-#rating-system #rating-form::before{
+#rating-system .rating-form::before{
     content: "\f0d8";
     position: absolute;
     font-size: 1rem;
