@@ -135,7 +135,7 @@
    padding-left: 0.5rem;
    vertical-align: middle;
 }
-.shortcut-bar-menu li .shortcut-bar-link.active{
+.shortcut-bar-menu .shortcut-bar-link.active{
     border-bottom: 3px solid var(--color-bg-4);   
 }
 /*--List header--*/

@@ -235,20 +235,22 @@ export const fetchSpecificDetails = async (movieIds) => {
 
 //active links toggle
 const addShortcutBarUI = (links,containerBar)=>{
-   for(let link of links){
-    link.addEventListener("click",()=>{
-        if (link.classList.contains('active')) {
-            link.classList.remove('active');
-          } else {
-            link.classList.add('active');
-          }
+    let active;
+   links.forEach(link =>{
+    link.addEventListener("click",e=>{
+       if(active){
+        active.classList.remove("active");
+       }
+       e.currentTarget.classList.add("active");
+       active = e.currentTarget;
     })
-   }
+    
+   })
 }
 window.addEventListener("load", () => {
     //toogle active links
     const watchListBar = document.querySelector("#watch-list-bar");
-    const watchLinks = watchListBar.querySelectorAll(".shortcut-bar-link");
+    const watchLinks = document.querySelectorAll(".shortcut-bar-link");
     //for watch-list shortcut bar active ui update
     addShortcutBarUI(watchLinks,watchListBar);
 
