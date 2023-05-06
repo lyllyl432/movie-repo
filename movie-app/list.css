@@ -179,6 +179,7 @@
 }
 .filter-container .sort-container{
     position: relative;
+    min-width: 9rem;    
     display: flex;
     align-items: center; 
     cursor: pointer;
@@ -190,13 +191,13 @@
     padding: 0 1rem;
     z-index: 999;
 }
-.filter-container .sort-container .dropdown-filters .sort-text{
-    padding: 1rem 0;
+.filter-container .sort-container .dropdown-filters .sort-text .fa-sharp{
+    padding-left: 0.5rem;
 }
 .filter-container .sort-container .dropdown-filters .sort-text.active{
     border-bottom: 3px solid var(--color-bg-4); 
     color: var(--color-bg-4);
-    padding-top: 1.2rem;
+    padding: 1rem 0;
 }
 .filter-container .hide{
     display: none;
@@ -206,16 +207,20 @@
     display: none;
     top: 0;
     left: 0;
+    width: 100%;
     background: var(--color-white);
-    padding: 4rem 1rem 0.5rem;
+    padding: 4rem 1rem 0;
     z-index: 2;
     border: 1px solid var(--color-black-variant);  
 }
 .filter-container .sort-container .filters.show{
     display: block;
 }
-.filter-container .sort-container .filters li a{
+.filter-container .sort-container .filters li .filter{
     color: var(--color-black);
+}
+.filter-container .sort-container .filters li .filter.hide{
+    display: none;
 }
 
 .filter-container .order-container{

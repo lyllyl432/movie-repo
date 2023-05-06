@@ -25,7 +25,12 @@ class FilterMethods {
         const filters = document.querySelector(".filters");
         const dateLink = document.querySelector(".date-filter");
         const popularityLink = document.querySelector(".popularity-filter");
-        const voteLink = document.querySelector(".vote-filter");
+        const releaseLink = document.querySelector(".release-filter");
+        const filtersAnchor = document.querySelectorAll(".filter");
+        const dropDownDateText = document.querySelector("#sort-date-added");
+        const dropDownPopularityText = document.querySelector("#sort-popularity");
+        const dropDownReleaseText = document.querySelector("#sort-release-date");
+
 
         //mouseover and mouseout the ul
         sortContainer.addEventListener("mouseover", () => {
@@ -35,27 +40,32 @@ class FilterMethods {
             filters.classList.remove("show");
         })
         //filter by date
-        dateLink.addEventListener("click", () => {
-            this.showDateFilter(movieContainer);
+        dateLink.addEventListener("click", (e) => {
+            this.showDateFilter(e,movieContainer);
+            //specific dropdown filter update
+            this.filterUpdate(e,filtersAnchor,dropDownDateText,sortText)
         })
-        popularityLink.addEventListener("click", () => {
-            this.showPopularFilter(movieContainer);
+        popularityLink.addEventListener("click", (e) => {
+            this.showPopularFilter(e,movieContainer);
+            this.filterUpdate(e,filtersAnchor,dropDownPopularityText,sortText)
         })
-        voteLink.addEventListener("click", () => {
-            this.showReleaseFilter(movieContainer);
+        releaseLink.addEventListener("click", (e) => {
+            this.showReleaseFilter(e,movieContainer);
+            this.filterUpdate(e,filtersAnchor,dropDownReleaseText,sortText)
         })
-
+        const skipArg = undefined;
         // remain the class with the use of local storage
         if (showDate === "enabled") {
-            this.showDateFilter(movieContainer, showDate);
+            this.showDateFilter(skipArg,movieContainer,filtersAnchor);
         } else if (showPopular === "enabled") {
-            this.showPopularFilter(movieContainer, showPopular);
+            this.showPopularFilter(skipArg,movieContainer,filtersAnchor);
         } else if (showRelease === "enabled") {
-            this.showReleaseFilter(movieContainer, showRelease)
+            this.showReleaseFilter(skipArg,movieContainer,filtersAnchor)
         }
     }
     //callback functions for event listeners in filter links
-    showDateFilter(containers) {
+    showDateFilter(e,containers) {
+        console.log(e);
         localStorage.removeItem("release-filter");
         localStorage.removeItem("popularity-filter");
         for (let container of containers) {
@@ -66,7 +76,7 @@ class FilterMethods {
             }
         }
     }
-    showPopularFilter(containers) {
+    showPopularFilter(e,containers) {
         localStorage.removeItem("release-filter");
         localStorage.removeItem("date-filter");
         for (let container of containers) {
@@ -77,7 +87,7 @@ class FilterMethods {
             }
         }
     }
-    showReleaseFilter(containers) {
+    showReleaseFilter(e,containers) {
         localStorage.removeItem("date-filter");
         localStorage.removeItem("popularity-filter");
         for (let container of containers) {
@@ -87,6 +97,20 @@ class FilterMethods {
                 localStorage.setItem("release-filter", "enabled");
             }
         }
+    }
+    filterUpdate(e,filters,dropText,sortText){
+         //must add hide if the specific filter is clicked
+         filters.forEach(filter => {
+            filter.classList.remove("hide");
+        })
+        e.currentTarget.classList.add("hide");
+         //drop-down text 
+         sortText.forEach(text => {
+            text.classList.remove("active");
+            text.classList.add("hide")
+        })
+         dropText.classList.add("active");
+         dropText.classList.remove("hide");
     }
 
 
@@ -235,17 +259,14 @@ export const fetchSpecificDetails = async (movieIds) => {
 
 //active links toggle
 const addShortcutBarUI = (links,containerBar)=>{
-    let active;
-   links.forEach(link =>{
-    link.addEventListener("click",e=>{
-       if(active){
-        active.classList.remove("active");
-       }
-       e.currentTarget.classList.add("active");
-       active = e.currentTarget;
-    })
+    for(let link of links){
+        link.addEventListener("click",e=>{
+           links.forEach(link => link.classList.remove("active"));
+           e.target.classList.add("active");
+        })
+
+    }
     
-   })
 }
 window.addEventListener("load", () => {
     //toogle active links
@@ -253,6 +274,10 @@ window.addEventListener("load", () => {
     const watchLinks = document.querySelectorAll(".shortcut-bar-link");
     //for watch-list shortcut bar active ui update
     addShortcutBarUI(watchLinks,watchListBar);
+    //for main shorcut bar active ui update
+    const mainBar = document.querySelector("#main-bar");
+    const mainLinks = mainBar.querySelectorAll(".shortcut-bar-link");
+    addShortcutBarUI(mainLinks,mainBar);
 
     //favorite storage list
     const favoriteStorage = FavoriteStorage.getLocalStorage();
