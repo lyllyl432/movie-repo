@@ -88,11 +88,11 @@
         <div id="shortcut-bar">
             <div class="container">
                 <ul role="list" id="main-bar" class="shortcut-bar-menu">
-                    <li role="list-item"><a href="#">Overview<i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
-                    <li role="list-item"><a href="#">Discussions</a></li>
-                    <li role="list-item"><a href="#">Lists</a></li>
-                    <li role="list-item"><a href="#">Ratings<i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
-                    <li role="list-item"><a class="active" href="#">Watchlist<i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
+                    <li role="list-item"><a class="shortcut-bar-link" href="#">Overview<i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
+                    <li role="list-item"><a class="shortcut-bar-link" href="#">Discussions</a></li>
+                    <li role="list-item"><a class="shortcut-bar-link" href="#">Lists</a></li>
+                    <li role="list-item"><a class="shortcut-bar-link" href="#">Ratings<i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
+                    <li role="list-item"><a class="shortcut-bar-link" href="#">Watchlist<i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -105,7 +105,7 @@
                         <img src="img/message icon.svg" alt="">
                     </div>
                     <ul role="list" id="watch-list-bar" class="shortcut-bar-menu">
-                        <li role="listitem"><a class="shortcut-bar-link" href="#">Movies <span class="counter">1</span></a></li>
+                        <li role="listitem"><a class="shortcut-bar-link active" href="#">Movies <span class="counter">1</span></a></li>
                         <li role="listitem"><a class="shortcut-bar-link" href="#">TV <span class="counter">1</span></a></li>
                     </ul>
 
@@ -114,16 +114,14 @@
                 <h4>Filter By:</h4>
                 <div class="sort-container">
                     <div class="dropdown-filters">
-                        <span id="sort-upcoming" class="sort-text active">Upcoming <i class="fa-sharp fa-solid fa-caret-down"></i></span>
-                        <span id="sort-date-added" class="sort-text hide">Date Added<i class="fa-sharp fa-solid fa-caret-down"></i></span>
+                        <span id="sort-date-added" class="sort-text active">Date Added<i class="fa-sharp fa-solid fa-caret-down"></i></span>
                         <span id="sort-popularity" class="sort-text hide">Popularity<i class="fa-sharp fa-solid fa-caret-down"></i></span>
                         <span id="sort-release-date" class="sort-text hide">Release Date<i class="fa-sharp fa-solid fa-caret-down"></i></span>
                     </div>
                     <ul role="list" class="filters">
-                        <li role="listitem"><a href="#" class="upcoming-filter">Upcoming</a></li>
-                        <li role="listitem"><a href="#" class="date-filter">Date Added</a></li>
-                        <li role="listitem"><a href="#" class="popularity-filter">Popularity</a></li>
-                        <li role="listitem"><a href="#" class="vote-filter">Release Date</a></li>
+                        <li role="listitem"><a href="#" class="date-filter filter hide">Date Added</a></li>
+                        <li role="listitem"><a href="#" class="popularity-filter filter">Popularity</a></li>
+                        <li role="listitem"><a href="#" class="release-filter filter">Release Date</a></li>
                     </ul>
                 </div>
                 <div class="order-container">
