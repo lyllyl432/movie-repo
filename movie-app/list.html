@@ -89,10 +89,9 @@
             <div class="container">
                 <ul role="list" id="main-bar" class="shortcut-bar-menu">
                     <li role="list-item"><a class="shortcut-bar-link" href="#">Overview<i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
-                    <li role="list-item"><a class="shortcut-bar-link" href="#">Discussions</a></li>
                     <li role="list-item"><a class="shortcut-bar-link" href="#">Lists</a></li>
                     <li role="list-item"><a class="shortcut-bar-link" href="#">Ratings<i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
-                    <li role="list-item"><a class="shortcut-bar-link" href="#">Watchlist<i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
+                    <li role="list-item"><a class="shortcut-bar-link active" href="#">Watchlist<i class="fa-sharp fa-solid fa-caret-down"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -137,43 +136,86 @@
         <div id="list">
             <div class="list-container">
                 <div id="sort-date-wrapper">
-                     <!-- <div class="list-img">
-                    <img src="${IMAGE_URL + poster_path}" alt="watched movie">
-                </div>
-                <div class="details">
-                    <div class="head-details-wrapper">
+                    <!-- <div class="list-img">
+                        <img src="${IMAGE_URL + poster_path}" alt="watched movie">
+                    </div>
+                    <div class="details">
+                        <div class="head-details-wrapper">
                         <div class="ring-percent">
-                            <div class="circle">
-                                <h6 class="circle-num">${percentage}%</h6>
+                        <div class="circular-progress circular-progress-sm" data-percentage="10"
+                        data-progress-color = "#fff" data-inner-circle-color="#087CA7" data-bg-color = "#000">
+                            <div class="inner-circle">
+                                <p class="percentage">0%</p>
                             </div>
                         </div>
-                        <div class="title-wrapper">
-                            <h3 class="title">${title}</h3>
-                            <small class="date">${release_date}</small>
+                    </div>  
+                            <div class="title-wrapper">
+                                <h3 class="title">${title}</h3>
+                                <small class="date">${release_date}</small>
+                            </div>
                         </div>
-                    </div>
-                        <div class="overview">
-                            <p>${overview}</p>
-                        </div>
-                        <div class="action-bar">
-                        <div class="rating-bar">
-                            <button class="rating-bar-btn" data-id=${id}><i class="fa-regular fa-star"></i></button>
+                            <div class="overview">
+                                <p>${overview}</p>
+                            </div>
+                            <div class="action-bar">
+                            <div id="rating-system" class ="rating-system--width-none">
+                            <div class="ratings-container">
+                            <button class="btn rate-btn rate-btn--sm" data-id = ${id}><i data-id = ${id} class="fa-solid fa-star"></i></button>
                             <span>Your rating</span>
+                        <form action="" id="rating-form-handler" class="rating-form">
+                        <fieldset id="rating" class="rating-fieldset" data-id=${id}>
+                            <input type="radio" id="star-5" class="input-identifier" name="rating" value="10.0" data-num ="10" data-id=${id}> <label class="full label-icon" for="star-5" title="5 stars"></label>
+                            <input type="radio" id="star-4-half" class="input-identifier"name="rating" value="9.0" data-num ="9" data-id=${id}> <label class="half label-icon" for="star-4-half" title="4 half stars"></label>
+                            <input type="radio" id="star-4" class="input-identifier"name="rating" value="8.0" data-num ="8" data-id=${id}"> <label class="full label-icon" for="star-4" title="4 stars"></label>
+                            <input type="radio" id="star-3-half" class="input-identifier"name="rating" value="7.0" data-num ="7" data-id=${id}> <label class="half label-icon" for="star-3-half" title="3 half stars"></label>
+                            <input type="radio" id="star-3" class="input-identifier"name="rating" value="6.0" data-num ="6" data-id=${id}> <label class="full label-icon" for="star-3" title="3 stars"></label>
+                            <input type="radio" id="star-2-half" class="input-identifier"name="rating" value="5.0" data-num ="5" data-id=${id}> <label class="half label-icon" for="star-2-half" title="2 half stars"></label>
+                            <input type="radio" id="star-2" class="input-identifier"name="rating" value="4.0" data-num ="4" data-id=${id}> <label class="full label-icon" for="star-2" title="2 stars"></label>
+                            <input type="radio" id="star-1-half" class="input-identifier"name="rating" value="3.0" data-num ="3" data-id=${id}> <label class="half label-icon" for="star-1-half" title="1 half stars"></label>
+                            <input type="radio" id="star-1" class="input-identifier"name="rating" value="2.0" data-num ="2" data-id=${id}> <label class="full label-icon" for="star-1" title="1 stars"></label>
+                            <input type="radio" id="star-0-half" class="input-identifier"name="rating" value="1.0" data-num ="1" data-id=${id}> <label class="half label-icon" for="star-0-half" title="0 half stars"></label>
+                        </fieldset>
+                    </form>
+                            
+                            </div>
                         </div>
-                        <div class="favorite-bar">
-                            <button class="favorite-bar-btn" data-id=${id}><i class="fa-regular fa-heart"></i></button>
-                            <span>Favorite</span>
-                        </div>
-                        <div class="add-bar">
+                            <div class="favorite-bar">
+                                <button class="favorite-bar-btn" data-id=${id}><i class="fa-regular fa-heart"></i></button>
+                                <span>Favorite</span>
+                            </div>
+                            <div class="add-bar">
                             <button class="add-bar-btn" data-id=${id}><i class="fa-solid fa-list"></i></button>
                             <span>Add to list</span>
+                            <div class="list-creator">
+                                <h3 class="list-creator-heading">
+                                    <a href="#" id="create-link"><i class="fa-solid fa-plus"></i><span class="create-text">Create New List</span></a>
+                                </h3>
+                                <div class="movie-to-add-wrapper">
+                                    <span class="movie-to-add-title">Add ${title}</span>
+                                    <span id="title-dropdown"><i class="fa-sharp fa-solid fa-caret-down"></i></span>
+                                    <div class="movie-add-search">
+                                        <form id="form">
+                                            <input id="search" type="text" class="input" name="movie">
+                                            <button class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                        </form>
+                                        <div class="watch-storage-wrapper">
+                                            <div class="movie-to-add-wrapper movie-to-add-wrapper-dark-variant">
+                                                <span class="movie-to-add-title">Add ${title}</span>
+                                            </div>
+                                            <div class="watch-storage-list">
+                                                <span class="movie-to-add-title">fdf</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="remove-bar">
+                                <button class="remove-bar-btn" data-id=${id}><i class="fa-solid fa-x"></i></button>
+                                <span>Remove</span>
+                            </div>
                         </div>
-                        <div class="remove-bar">
-                            <button class="remove-bar-btn" data-id=${id}><i class="fa-solid fa-x"></i></button>
-                            <span>Remove</span>
-                        </div>
-                    </div>
-                </div> -->
+                    </div> -->
                 </div>
                 <div id="sort-popularity-wrapper"> <!-- <div class="list-img">
                     <img src="${IMAGE_URL + poster_path}" alt="watched movie">

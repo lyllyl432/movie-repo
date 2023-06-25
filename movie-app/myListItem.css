@@ -1,0 +1,47 @@
+#my-list-header{
+    background: var(--color-bg-3);
+    padding: 1.5rem 0;
+}
+.my-list-title{
+    font-weight: 700;
+    font-size: 2rem;
+}
+.my-list-menu-bar{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.account-menu{
+    display: flex;  
+    align-items: center;
+    gap: 0.8rem;
+    line-height: normal;
+}
+.account-menu img{
+    width: 3rem;
+    height: auto;
+}
+.menu-context{
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+.account-menu-info .menu-heading-small{
+    color: var(--color-bg-3);
+}
+.btn--white-background{
+    background: var(--color-white);
+    border: none;
+    color: var(--color-secondary);
+    font-weight: 700;
+    transition: all 0.5s ease;
+}
+.btn--white-background:not(:last-child){
+    margin-right: 1rem;
+}
+.btn--white-background:hover{
+    color: var(--color-black);
+    background: var(--color-white);
+}
+.about-my-list{
+    margin-top: 1rem;
+}

@@ -1,0 +1,66 @@
+.main-container{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    place-content: center;
+}
+#page-selector{
+   margin: 1rem 0;
+}
+#username{
+    font-size: 1.5rem;
+}
+.page-box-selector{
+    box-shadow: 0 0 3px var(--color-white);
+    border-radius: 5px;
+}
+.page-box-header{
+    background: var(--color-bg-4);
+    padding: 0.85rem 1.2rem;
+}
+.page-header-text{
+    font-size: 1.1rem;
+}
+.selector-list{
+    padding: 0.85rem 1.2rem;
+}
+.selector-list-items{
+    margin: 0.85rem 0;
+}
+#list-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding: 0 1rem;
+    margin-top: 5rem;
+}
+#list-form label{
+    font-size: 1rem;
+    font-weight: 300;
+    margin: 1rem 0;
+}
+.input-control{
+    width: 100%;
+    padding: 0.5rem;
+}
+.input-control:focus{
+    outline: var(--color-bg-4) solid 1px;
+}
+#privacy-selection{
+    background: var(--color-white-variant);
+}
+.submit-btn{
+    padding: 0.35rem 1rem;
+    border-radius: 0.35rem;
+    background: var(--color-bg-4);
+    color: var(--color-white);
+    border: none;
+    transition: background-color 0.3s ease-in-out;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-top: 1rem;
+}
+.submit-btn:hover{
+    background: var(--color-bg-3);
+}
+
