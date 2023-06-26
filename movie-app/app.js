@@ -29,7 +29,7 @@ export class AllStorage {
     }
 }
 //display input feature and search filter
-const searchMovies = ()=>{
+export const searchMovies = ()=>{
     const searchIcon = document.querySelector("#search-icon");
     const form = document.querySelector(".form-group");
     searchIcon.addEventListener("click",()=>{
@@ -116,7 +116,7 @@ const displayMovies = (data,url)=>{
         divElement.classList.add("swiper-slide")
         divElement.classList.add("movie");
         divElement.dataset.id = id;
-        divElement.innerHTML = `<a href ="/movie-app/movie.html">
+        divElement.innerHTML = `<a href ="./movie.html">
  
         <img src="${url + poster_path}" alt="${title}">
         <div class="movie-info">

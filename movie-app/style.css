@@ -7,6 +7,7 @@
 }
     :root{
         --color-primary: #031A6B;
+        --color-secondary: #1ac9f5;
         --color-bg-1:  #033860;
         --color-bg-2:#087CA7;
         --color-bg-3:#004385; 
@@ -15,6 +16,7 @@
         --color-white-variant: rgba(255, 255, 255, 0.5);
         --color-black: #000;
         --color-black-variant: rgba(0, 0, 0, 0.5);
+        --color-black-variant-2: rgba(0, 0, 0, 0.2);
         --color-danger: red;
         --color-favorite: #FF69B4;
         --container--lg: 88%;

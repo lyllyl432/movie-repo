@@ -223,7 +223,7 @@ const displayMovie = (data)=>{
     buttonElement.setAttribute("role","list");
     buttonElement.classList.add("button-wrapper");
     buttonElement.innerHTML = ` <button class="btn add-bar-btn" data-id = ${id}><i role="list-item" class="fa-regular fa-bookmark"></i></button>
-    <button href="" class="btn favorite-bar-btn" data-id = ${id}><i class="fa-solid fa-heart"></i></button>
+    <button href="" class="btn favorite-bar-btn" data-id = ${id}><i role="list-item" class="fa-solid fa-heart"></i></button>
      <div id="rating-system">
          <div class="ratings-container">
          <button class="btn rate-btn rate-btn--sm" data-id = ${id}><i data-id = ${id} class="fa-solid fa-star"></i></button>

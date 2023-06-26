@@ -1,5 +1,12 @@
 import { WatchedStorage, ButtonMethods,FavoriteStorage } from "./movie.js";
 import { API_KEY, BASE_URL, IMAGE_URL } from "./app.js";
+
+const fetchSpecificMovie = async(id)=>{
+    const FIND_URL = BASE_URL + "/movie/" + id + "?" + API_KEY + "&language=en-US";
+    const specificData = await fetch(FIND_URL);
+    const result = await specificData.json();
+    return result;
+}
 class UserUpdate {
     updatePercentage() {
         const circularProgress = document.querySelectorAll(".circular-progress");
@@ -112,8 +119,6 @@ class FilterMethods {
          dropText.classList.add("active");
          dropText.classList.remove("hide");
     }
-
-
 }
 //sort data by vote average
 const sortByRelease = (data, container, sortWrap) => {
@@ -175,6 +180,81 @@ ButtonMethods.prototype.removeWatchedMovie = (container) => {
         })
     })
 }
+//add watch list button function
+ButtonMethods.prototype.getWatchList = ()=>{
+    const addBarBtn = document.querySelectorAll(".add-bar-btn");
+    const listCreator = document.querySelectorAll(".list-creator");
+    let lastID;
+    //toggle add-bar-btn
+    addBarBtn.forEach(btn => {
+        btn.addEventListener("click",(e)=>{
+            e.stopPropagation();
+            const currentBtn = e.currentTarget;
+            listCreator.forEach(list => {
+                list.classList.remove("show");
+            })
+            currentBtn.nextElementSibling.nextElementSibling.classList.add("show");
+            
+        })
+    //remove the pop up button when click outside the button
+    })
+    window.addEventListener("click",(e)=>{
+        listCreator.forEach(list =>{
+            if(!list.contains(e.target)){
+                list.classList.remove("show");
+            }
+        })
+    })
+    // add the watch list storage in DOM
+    const getListData = WatchListStorage.getLocalStorage("watchlist-data");
+    let movieId;
+    let storageId;
+
+    const watchStorageWrapper = document.querySelectorAll(".watch-storage-wrapper");
+    getListData.forEach(list => {
+        let {title,description,privacy,"data-id":id} = list;
+        watchStorageWrapper.forEach(wrapper => {
+            movieId = wrapper.dataset.movieid;
+            const storageElem = document.createElement("div");
+            storageElem.classList.add("watch-list-storage");
+            storageElem.setAttribute("data-movieid",movieId);
+            storageElem.setAttribute("data-storageid",id);
+            storageElem.innerHTML = `<span class="watch-list-storage-title">${title}</span>`
+            wrapper.appendChild(storageElem);
+        })
+    })
+    
+    const watchListStorage = document.querySelectorAll(".watch-list-storage");
+    watchListStorage.forEach(list => {
+        list.addEventListener("click", (e)=>{
+            storageId = e.currentTarget.dataset.storageid;
+            movieId = e.currentTarget.dataset.movieid;
+            console.log(movieId);
+            const findKeyStorage = WatchListStorage.getLocalStorage("watch-list-id").find(id => id === storageId);
+           //fetch specific movie data
+            fetchSpecificMovie(movieId).then(data => {
+          
+            const movieData = {
+                poster_path : data.poster_path,
+                vote_average: data.vote_average,
+                id: data.id
+            }
+            const movieLibraryList = WatchListStorage.getLocalStorage(findKeyStorage);
+            if(movieLibraryList.find(data => data.id == movieId)){
+                alert("Already Added To The List");
+                return;
+            }
+            movieLibraryList.push(movieData);
+            WatchListStorage.setLocalStorage(movieLibraryList,findKeyStorage);
+            alert("Successfully Added To The List");
+           })
+
+            
+            
+            
+        })
+    })
+}
 //display filter movies
 export const displaySortMovies = (data, container, sortWrap) => {
     data.forEach(movie => {
@@ -182,8 +262,9 @@ export const displaySortMovies = (data, container, sortWrap) => {
         const percentage = Math.round((vote_average / 10) * 100);
         const divElem = document.createElement("div");
         divElem.classList.add("movie-container");
+        divElem.classList.add("movie-container-static")
         sortWrap.classList.add("container");
-        divElem.innerHTML = ` <div class="list-img">
+        divElem.innerHTML = `<div class="list-img">
         <img src="${IMAGE_URL + poster_path}" alt="watched movie">
     </div>
     <div class="details">
@@ -231,8 +312,28 @@ export const displaySortMovies = (data, container, sortWrap) => {
                 <span>Favorite</span>
             </div>
             <div class="add-bar">
-                <button class="add-bar-btn" data-id=${id}><i class="fa-solid fa-list"></i></button>
-                <span>Add to list</span>
+            <button class="add-bar-btn" data-id=${id}><i class="fa-solid fa-list"></i></button>
+            <span>Add to list</span>
+            <div class="list-creator" data-id=${id}>
+                <h3 class="list-creator-heading">
+                    <a href="#" id="create-link"><i class="fa-solid fa-plus"></i><span class="create-text">Create New List</span></a>
+                </h3>
+                <div class="movie-to-add-wrapper">
+                    <span class="movie-to-add-title">Add ${title}</span>
+                    <span id="title-dropdown"><i class="fa-sharp fa-solid fa-caret-down"></i></span>
+                    <div class="movie-add-search">
+                        <form id="form">
+                            <input id="search" type="text" class="input" name="movie">
+                            <button class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                        <div class="watch-storage-wrapper" data-movieid="${id}">
+                        <div class="movie-to-add-wrapper movie-to-add-wrapper-dark-variant">
+                 <span class="movie-to-add-title">Add ${title}</span>
+            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
             <div class="remove-bar">
                 <button class="remove-bar-btn" data-id=${id}><i class="fa-solid fa-x"></i></button>
@@ -258,26 +359,24 @@ export const fetchSpecificDetails = async (movieIds) => {
 }
 
 //active links toggle
-const addShortcutBarUI = (links,containerBar)=>{
-    for(let link of links){
-        link.addEventListener("click",e=>{
-           links.forEach(link => link.classList.remove("active"));
-           e.target.classList.add("active");
-        })
+// const addShortcutBarUI = (links)=>{
+//     for(let link of links){
+//         link.addEventListener("click",e=>{
+//            e.target.classList.add("active");
+//         })
 
-    }
+//     }
     
-}
+// }
 window.addEventListener("load", () => {
     //toogle active links
     const watchListBar = document.querySelector("#watch-list-bar");
     const watchLinks = document.querySelectorAll(".shortcut-bar-link");
     //for watch-list shortcut bar active ui update
-    addShortcutBarUI(watchLinks,watchListBar);
+    // addShortcutBarUI(watchLinks,watchListBar);
     //for main shorcut bar active ui update
     const mainBar = document.querySelector("#main-bar");
     const mainLinks = mainBar.querySelectorAll(".shortcut-bar-link");
-    addShortcutBarUI(mainLinks,mainBar);
 
     //favorite storage list
     const favoriteStorage = FavoriteStorage.getLocalStorage();
@@ -311,8 +410,8 @@ window.addEventListener("load", () => {
         //ui update of button
         //update the rating when clicked
         buttonUtilities.getRatings();
-        //active line feature to the shortcutbar links
-        
+        //watch list feature
+        buttonUtilities.getWatchList();
 
        
        
