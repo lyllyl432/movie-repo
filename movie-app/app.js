@@ -29,7 +29,7 @@ export class AllStorage {
     }
 }
 //display input feature and search filter
-const searchMovies = ()=>{
+export const searchMovies = ()=>{
     const searchIcon = document.querySelector("#search-icon");
     const form = document.querySelector(".form-group");
     searchIcon.addEventListener("click",()=>{

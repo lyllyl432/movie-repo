@@ -1,4 +1,4 @@
-import { WatchListStorage,timeAgo} from "./myList-form.js";
+import { WatchListStorage} from "./myList-form.js";
 class ListWrapper{
     static getWatchWrapperId = ()=>{
         const watchWrapperLink = document.querySelectorAll(".watchlist-wrapper-link");
@@ -16,7 +16,7 @@ class ListWrapper{
             const timeCounter = watchlist.querySelector(".time-counter");
             const date = new Date(watchlist.dataset.date);
             console.log(date);
-            const currTimeAgo = timeAgo(date);
+            const currTimeAgo = this.timeAgo(date);
             timeCounter.textContent = currTimeAgo;
         })
     }
@@ -28,7 +28,7 @@ class ListWrapper{
            data-date="${date}">
            <div class="watchList-info centered-info">
                <div>
-                   <a href="./listItem.html" class="watchlist-wrapper-link" data-id="${dataId}"><h3 class="box-heading-info">${title}</h3></a>
+                   <a href="./myListItem.html" class="watchlist-wrapper-link" data-id="${dataId}"><h3 class="box-heading-info">${title}</h3></a>
                </div>
                <div>
                    <span class="item- counter">2 items</span>
@@ -41,10 +41,43 @@ class ListWrapper{
        </div>`
         })
     }
+    
+    static timeAgo = (dateCreated)=>{
+        const seconds = Math.floor((new Date() - dateCreated) / 1000);
+        let interval = Math.floor(seconds / 31536000);
+        if (interval > 1) {
+            return interval + ' years ago';
+          }
+        
+          interval = Math.floor(seconds / 2592000);
+          if (interval > 1) {
+            return interval + ' months ago';
+          }
+        
+          interval = Math.floor(seconds / 86400);
+          if (interval > 1) {
+            return interval + ' days ago';
+          }
+        
+          interval = Math.floor(seconds / 3600);
+          if (interval > 1) {
+            return interval + ' hours ago';
+          }
+        
+          interval = Math.floor(seconds / 60);
+          if (interval > 1) {
+            return interval + ' minutes ago';
+          }
+        
+          if(seconds < 10) return 'just now';
+        
+          return Math.floor(seconds) + ' seconds ago';
+    }
 }
-window.addEventListener("load",()=>{
+window.addEventListener("DOMContentLoaded",()=>{
     //get data in local storage and display in UI
     const getData = WatchListStorage.getLocalTimeStorage("watchlist-data");
+    console.log(getData);
     ListWrapper.displayWatchListUI(getData);
     //click event listener for create btn
     const createListBtn = document.querySelector(".create-list-btn");
@@ -53,7 +86,7 @@ window.addEventListener("load",()=>{
         WatchListStorage.setLocalStorage(createdListDate,"created-list-date");
     })
     //display time function
-    ListWrapper.displayTime();
+    ListWrapper.displayUpdatedTime();
     //get the data id of every link using event listener
     ListWrapper.getWatchWrapperId();
 })
