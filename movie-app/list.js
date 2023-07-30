@@ -1,5 +1,6 @@
 import { WatchedStorage, ButtonMethods,FavoriteStorage } from "./movie.js";
 import { API_KEY, BASE_URL, IMAGE_URL } from "./app.js";
+import { WatchListStorage } from "./myList-form.js";
 
 const fetchSpecificMovie = async(id)=>{
     const FIND_URL = BASE_URL + "/movie/" + id + "?" + API_KEY + "&language=en-US";

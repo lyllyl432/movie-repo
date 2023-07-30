@@ -1,0 +1,30 @@
+#search{
+    font-size: 0.95rem;
+}
+.search-form-group{
+    display: flex;
+    flex-direction: column;
+}
+.search-form-label{
+    font-size: 0.9rem;
+}
+#search-form-input{
+    padding: 0.35rem 0.5rem;
+}
+.search-movie-label{
+    padding: 0 0 0.2rem 0;
+    font-weight: 700;
+}
+.search-form-textarea{
+    padding: 0.5rem
+}
+.search-form-save-container{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+}
+.search-movie-save{
+    margin-top: 3rem;
+}
+
+
