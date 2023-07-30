@@ -2,9 +2,8 @@
     display: grid;
     grid-template-columns: 20% 80%;
     place-content: center;
-}
-#page-selector{
-   margin: 1rem 0;
+    padding: 1.2rem 0;
+    gap: 1.5rem;
 }
 #username{
     font-size: 1.5rem;
@@ -21,18 +20,31 @@
     font-size: 1.1rem;
 }
 .selector-list{
-    padding: 0.85rem 1.2rem;
+    padding: 0.85rem 0;
 }
 .selector-list-items{
-    margin: 0.85rem 0;
+    margin: 0.70rem 0;
+    cursor: pointer;
+    padding: 0.70rem 1.2rem;
+    font-size: 0.95rem;
+}
+.selector-list-items.active{
+    background: var(--color-white-variant);
+}
+
+/*if i click to the other list will remove the active from the list and and add new */
+.selector-list-items:hover{
+    background: var(--color-white-variant);
+    color: var(--color-primary);
+}
+.list-items-container{
+    margin-top: 2.7rem;
 }
 #list-form{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: start;
-    padding: 0 1rem;
-    margin-top: 5rem;
 }
 #list-form label{
     font-size: 1rem;
@@ -63,4 +75,3 @@
 .submit-btn:hover{
     background: var(--color-bg-3);
 }
-

@@ -1,8 +1,3 @@
-const saveIdLocal = (id)=>{
-    let watchListIds = WatchListStorage.getLocalStorage("watch-list-id");
-    watchListIds.push(id);
-    WatchListStorage.setLocalStorage(watchListIds,"watch-list-id");
-}
 export class WatchListStorage{
     static getLocalTimeStorage = (key)=>{
         return localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)):null;
@@ -14,7 +9,14 @@ export class WatchListStorage{
             localStorage.setItem(key,JSON.stringify(data))
         }
 }
-window.addEventListener("load",()=>{
+export class LocalId extends WatchListStorage{
+    static saveIdLocal(){
+        let watchListIds = super.getLocalStorage("watch-list-id");
+        watchListIds.push(id);
+        super.setLocalStorage(watchListIds,"watch-list-id"); 
+    }
+}
+window.addEventListener("DOMContentLoaded",()=>{
     const listForm = document.querySelector("#list-form");
     const inputName = document.querySelector("#input-name");
     const inputDesc = document.querySelector("#input-description");
@@ -42,7 +44,7 @@ window.addEventListener("load",()=>{
                 localArrData.push(data);
                 WatchListStorage.setLocalStorage(localArrData,"watchlist-data");
                  //save id
-                saveIdLocal(id)
+                LocalId.saveIdLocal(id)
             }
         })
 })

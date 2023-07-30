@@ -6,7 +6,7 @@ class ListWrapper{
         link.addEventListener("click",e =>{
             const currTarget = e.currentTarget;
             const dataId = currTarget.dataset.id;
-            WatchListStorage.setLocalStorage(dataId,"current-click");
+            WatchListStorage.setLocalStorage(dataId,"current-link-click");
         })
       })
     }

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="movie.css">
     <link rel="stylesheet" href="list.css">
     <link rel="stylesheet" href="myList-form.css">
+    <link rel="stylesheet" href="edit-list-setting.css">
     <!--GOOGLE FONT-->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="styles
     ">
@@ -44,46 +45,59 @@
         <div class="form-group has-search">
             <input type="text" class="form-control" placeholder="Search for a movie, tv shows">
             <span class="fa fa-search form-control-feedback"></span>
-          </div>
+        </div>
     </div>
     <!--MAIN CONTAINER-->
     <main class="main-container container">
         <!--PAGE CONTENT SELECTOR-->
         <section id="page-selector">
-            <h3 id="page-selector-heading">Create New List: Step 1</h3>
+            <h3 id="username">john lyl</h3>
             <div class="page-box-selector">
                 <div class="page-box-header">
                     <h3 class="page-header-text">Edit</h3>
                 </div>
                 <ul class="selector-list" role="list">
-                    <li class="selector-list-items">Step 1: List Details</li>
-                    <li class="selector-list-items">Step 2: Add Items</li>
-                    <li class="selector-list-items">Step 3: Choose Image</li>
+                    <li class="selector-list-items" id="show-form">Edit List</li>
+                    <li class="selector-list-items" id="show-search">Add/Edit Items</li>
+                    <li class="selector-list-items" id="show-image">Choose Image</li>
+                    <li class="selector-list-items" id="show-delete">Delete List</li>
                 </ul>
             </div>
         </section>
     
         <!--LIST FORM-->
-        <form id="list-form" class="selection">
-            <label>Name</label>
-            <input type="text" class="input-control" id="input-name" name="name" required>
-            <label>Description</label>
-            <textarea id="input-description" class="input-control" rows="4" cols="50" wrap="physical" name="description"></textarea>
-            <label>Public List?</label>
-            <select class="input-control" name="boolean" id="privacy-selection" required>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-              </select>
-              <!--sort selection-->
-              <!-- <select name="boolean" id="privacy-selection">
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-              </select> -->
-            <button class="submit-btn" type="submit">Save</button>
-        </form>
-        <!--SEARCH ITEMS-->
+        <div class="list-items-container">
+            <form id="edit-list-form" class="list-page active">
+                    <label>Name</label>
+                    <input type="text" class="input-control" id="input-name" name="name" required>
+                    <label>Description</label>
+                    <textarea id="input-description" class="input-control" rows="4" cols="50" wrap="physical" name="description"></textarea>
+                    <label>Public List?</label>
+                    <select class="input-control" name="boolean" id="privacy-selection" required>
+                        <option  value="yes">Yes</option>
+                        <option value="no">No</option>
+                      </select>
+                    <button class="btn submit-btn" type="submit">Save</button>
+                </form>
+            <!-- <div id="search" class="list-page">
+                <form id="search-form">
+                    <div class="search-form-group">
+                        <label class="search-form-label" for="search-form-input">Add Item</label>
+                        <input type="text" id="search-form-input" name="search-item" placeholder="Search for a movie, tv shows">
+                    </div>
 
-        <!--CHOOSE IMAGE-->
+                    <div class="search-movie-save">
+                        <div class="search-form-group">
+                            <label class="search-movie-label" for="movie-1">1. Thor</label>
+                            <div class="search-form-save-container">
+                                <textarea class="search-form-textarea" name="movie-desc" id="movie-1" cols="90" rows="2"></textarea>
+                                <button class="btn submit-btn">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div> -->
+        </div>
     </main>
     <footer>
         <div class="footer-container container">
@@ -120,7 +134,7 @@
                     <li><a href="">Discussions</a></li>
                     <li><a href="">Leader Board</a></li>
                     <li><a href="">Twitter</a></li>
-                </ul>
+                </ul>   
             </div>
             <div class="footer-col">
                 <h4>LEGAL</h4>
@@ -133,5 +147,5 @@
         </div>
     </footer>
 <!--js file source-->
-<script type="module" src="./myList-form.js"></script>
+<script type="module" src="./edit-list-settings.js"></script>
 </body>

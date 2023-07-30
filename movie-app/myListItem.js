@@ -32,6 +32,8 @@ ListItem.prototype.displayUI = function(){
     listItems.appendChild(listItemWrapper);
     });
 }
+
+
 ListItem.prototype.updateHeaderInfo = function(){
     const myListTitle = document.querySelector("#my-list-title");
     const description = document.querySelector("#description");
@@ -40,6 +42,7 @@ ListItem.prototype.updateHeaderInfo = function(){
     description.textContent = this.description;
 
 }
+
 window.addEventListener("DOMContentLoaded",()=>{
     const id = JSON.parse(localStorage.getItem("current-click")); 
     const myListData = WatchListStorage.getLocalStorage("watchlist-data");
