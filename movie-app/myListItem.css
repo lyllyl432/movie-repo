@@ -45,3 +45,49 @@
 .about-my-list{
     margin-top: 1rem;
 }
+/*LIST ITEMS*/
+.list-items-container{
+    min-height: 80vh;
+}
+.list-items{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    gap: 1rem;
+}
+.list-item-image-wrapper{
+    height: 20rem;
+}
+.list-item-image{
+    width: auto;
+    height: 100%;
+}
+.list-flex-info{
+    display: flex;
+    justify-content: space-between;
+    background: var(--color-bg-3);
+    padding: 0.4rem 0.72rem;
+    color: var(--color-white-variant);
+    font-size: 0.89rem;
+}
+.item-dynamic-info{
+    display: flex;
+    gap: 0.8rem;
+}
+.fa-star-space{
+    padding-right: 0.2rem;
+}
+.list-form-button{
+    display: grid;
+    place-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.list-form-button-container{
+    display: flex;
+    gap: 1rem;
+}
+.submit-btn--padding-m{
+    padding: 0.60rem 1.38rem;
+    font-weight: 800;
+}
