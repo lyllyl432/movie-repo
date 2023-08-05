@@ -18,15 +18,17 @@ ListItem.prototype.displayUI = function(){
         percentage = Math.round(percentage); 
         const listItemWrapper = document.createElement("div");
         listItemWrapper.classList.add("list-item-wrapper");
-        listItemWrapper.innerHTML = `<div class="list-item-image">
-        <img src="${IMAGE_URL + poster_path}" alt="${title}">
+        listItemWrapper.innerHTML = `<div class="list-item-image-wrapper">
+        <img class="list-item-image" src="${IMAGE_URL + poster_path}" alt="${title}">
     </div>
     <div class="list-flex-info">
+        <div>
         <span class="count">${count}</span>
+        </div>
         <div class="item-dynamic-info">
             <span data-id ="${id}"><i class="fa-solid fa-heart"></i></span>
             <span data-id ="${id}"><i class="fa-regular fa-bookmark"></i></span>
-            <span id="movie-percentage">${percentage}%</span>
+            <span id="movie-percentage"><i class="fa-solid fa-star fa-star-space"></i>${percentage}%</span>
         </div>
     </div>`
     listItems.appendChild(listItemWrapper);
@@ -44,9 +46,9 @@ ListItem.prototype.updateHeaderInfo = function(){
 }
 
 window.addEventListener("DOMContentLoaded",()=>{
-    const id = JSON.parse(localStorage.getItem("current-click")); 
+    const id = JSON.parse(localStorage.getItem("current-link-click")); 
     const myListData = WatchListStorage.getLocalStorage("watchlist-data");
-    // console.log(myListData);
+    console.log(myListData);
     //FIND THE DATA WITH USING ID
     const findData = myListData.find(data => data["data-id"] === id);
     // console.log(findData);
