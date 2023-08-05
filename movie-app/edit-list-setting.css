@@ -1,3 +1,9 @@
+.list-page{
+    display: none;
+}
+.list-page.active{
+    display: block;
+}
 #search{
     font-size: 0.95rem;
 }

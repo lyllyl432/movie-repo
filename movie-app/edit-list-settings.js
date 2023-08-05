@@ -9,6 +9,7 @@ class FORM {
     static activeList() {
         const selectorList = document.querySelector(".selector-list");
         const selectorListItems = document.querySelectorAll(".selector-list-items");
+        const pages = document.querySelectorAll(".list-page");
 
         selectorList.addEventListener("click", e => {
             selectorListItems.forEach(selector => {
@@ -16,19 +17,23 @@ class FORM {
             })
             console.log(e.currentTarget)
             e.target.classList.add("active");
-            if (e.target.id == "show-form") {
-
-            } else if (e.target.id == "show-search") {
-
-            } else if (e.target.id == "show-image") {
-
-            } else {
-
-            }
+            pages.forEach(page => {
+                console.log(page)
+                page.classList.remove("active");
+                if (e.target.id == "show-form" && page.id === "edit-list-form") {
+                    // console.log("hello world");
+                    page.classList.add("active");
+                } else if (e.target.id == "show-search" && page.id === "search") {
+                    page.classList.add("active");
+                } else if (e.target.id == "show-image") {
+                    console.log("hello night");
+                } else {
+                    console.log("hello world");
+                }
+            })
         })
     }
 }
-
 FORM.prototype.getCurrentIndex = function(arr){
     let currIndex = arr.findIndex(({"data-id":dataID}=obj)=> dataID === this.id);
     return currIndex;  
@@ -104,7 +109,6 @@ window.addEventListener("DOMContentLoaded",()=>{
     FORM.activeList();
     //update the populated form
     editForm.updatePopulatedForm(editListForm,linksData);
-
     //update the add/edit items page and make the auto recommend search input to the movie with start letters
 
 
