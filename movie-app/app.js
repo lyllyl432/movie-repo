@@ -3,7 +3,7 @@ export const BASE_URL = "https://api.themoviedb.org/3/";
 const API_URL = BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY;
 export const IMAGE_URL ="https://image.tmdb.org/t/p/w500";
 const API_URL_RATING = BASE_URL + "/discover/movie/?certification_country=US&certification=R&sort_by=vote_average.desc&" + API_KEY;
-const SEARCH_URL = BASE_URL + "/search/movie?" + API_KEY;
+export const SEARCH_URL = BASE_URL + "/search/movie?" + API_KEY;
 const main = document.querySelector(".main");
 const swiperWrapper =  document.querySelector(".swiper-wrapper");
 const boxContainer = document.querySelector(".box-container");
@@ -131,7 +131,7 @@ const displayMovies = (data,url)=>{
     loadSpecificMovie()
 }
 //Fetch the popular data using API
-const loadMovies = async(url)=>{
+export const loadMovies = async(url)=>{
     let lastUrl = url;  
     try{
     let data = await fetch(`${lastUrl}`);

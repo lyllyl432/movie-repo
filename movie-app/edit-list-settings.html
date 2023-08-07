@@ -80,11 +80,26 @@
                     <button class="btn submit-btn" type="submit">Save</button>
                 </form>
             <div id="search" class="list-page">
+                <div class="search-suggest">
                 <form id="search-form">
                     <div class="search-form-group">
                         <label class="search-form-label" for="search-form-input">Add Item</label>
                         <input type="text" id="search-form-input" name="search-item" placeholder="Search for a movie, tv shows">
                     </div>
+                </form>
+                <div class="search-suggest-list-wrapper">
+                    <ul id="search-suggest-list">
+                        <!-- <li class="suggest-list-items"><div class="suggest-items-image"><img src="" alt=""></div><div class="suggest-items-info">
+                            <h6></h6>
+                            <span></span>
+                            <span></span>
+                        </div></li> -->
+                    </ul>
+                    <div class="no-data-warning show">
+                        <h2 class="warning-info">No data found</h2>
+                    </div>
+                </div>
+            </div>
 
                     <div class="search-movie-save">
                         <div class="search-form-group">
@@ -95,7 +110,6 @@
                             </div>
                         </div>
                     </div>
-                </form>
             </div>
         </div>
     </main>

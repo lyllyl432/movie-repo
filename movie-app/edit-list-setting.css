@@ -32,5 +32,67 @@
 .search-movie-save{
     margin-top: 3rem;
 }
+.search-suggest{
+    position: relative;
+}
+.search-suggest-list-wrapper{
+    display: none;
+    background: var(--color-white);
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    height: 15rem;
+    overflow-y: scroll;
+}
+.no-data-warning.show{
+    display: block;
+}
+#search-suggest-list{
+    padding: 1.5rem;
+}
+.no-data-warning{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+   color: var(--color-black);
+}
+.search-suggest-list-wrapper.show{
+   display: block;
+}
+.suggest-list-items{
+  list-style: none;
+  display: flex;
+  align-items: center;
+  color: var(--color-black);
+  gap: 0.5rem;
+}
+.suggest-list-items:not(:first-child){
+    margin-top: 0.5rem;
+}
+.suggest-items-image{
+    width: 3rem;
+    height: auto;
+}
+.suggest-list-title{
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+.release-date-info{
+    font-size: 0.89rem;
+    font-weight: 700;
+}
+.release-date-info::after{
+  content: "\2022";
+    padding: 0 0.3rem;
+}
+.percentage-info{
+    color: var(--color-black-variant);
+    font-weight: 600;
+    font-size: 0.75rem;
+}
+
+
 
 
