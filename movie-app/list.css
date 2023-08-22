@@ -375,7 +375,7 @@
 .list-creator #search:focus{
     outline: none;
 }
-.watch-storage-wrapper{
+.list-storage-wrapper{
     height: 100%;
 }
 .list-creator .movie-to-add-wrapper-dark-variant{
@@ -396,17 +396,17 @@
     border: none;
     font-size: 0.8rem;
 }
-.watch-list-storage{
+.list-storage{
     font-size: 0.8rem;
     margin-top: 0.5rem;
     padding: 0.3rem;
     cursor: pointer;
 }
-.watch-list-storage:hover{
+.list-storage:hover{
     background: var(--color-black-variant-2);
 }
 
-.watch-list-storage-title{
+.list-storage-title{
     color: var(--color-primary);
     opacity: 1;
 }

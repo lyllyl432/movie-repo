@@ -5,7 +5,7 @@ class ListWrapper{
       watchWrapperLink.forEach(link => {
         link.addEventListener("click",e =>{
             const currTarget = e.currentTarget;
-            const dataId = currTarget.dataset.id;
+            const dataId = currTarget.dataset.storageid;
             WatchListStorage.setLocalStorage(dataId,"current-link-click");
         })
       })
@@ -23,12 +23,12 @@ class ListWrapper{
     static displayWatchListUI=(data)=>{
         const watchListContainer = document.querySelector(".watchlist-boxes-container") ;
         data.forEach(item => {
-            const {title,description,privacy,"data-id":dataId,date} = item;
+            const {title,description,privacy,"storage-id":storageId,date} = item;
            watchListContainer.innerHTML += `<div class="watchlist-box"
            data-date="${date}">
            <div class="watchList-info centered-info">
                <div>
-                   <a href="./myListItem.html" class="watchlist-wrapper-link" data-id="${dataId}"><h3 class="box-heading-info">${title}</h3></a>
+                   <a href="./myListItem.html" class="watchlist-wrapper-link" data-storageid="${storageId}"><h3 class="box-heading-info">${title}</h3></a>
                </div>
                <div>
                    <span class="item- counter">2 items</span>
@@ -76,7 +76,7 @@ class ListWrapper{
 }
 window.addEventListener("DOMContentLoaded",()=>{
     //get data in local storage and display in UI
-    const getData = WatchListStorage.getLocalTimeStorage("watchlist-data");
+    const getData = WatchListStorage.getLocalTimeStorage("watchlist-storage");
     console.log(getData);
     ListWrapper.displayWatchListUI(getData);
     //click event listener for create btn

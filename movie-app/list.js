@@ -207,30 +207,35 @@ ButtonMethods.prototype.getWatchList = ()=>{
         })
     })
     // add the watch list storage in DOM
-    const getListData = WatchListStorage.getLocalStorage("watchlist-data");
+    //LOCAL STORAGE KEY TO CHANGE IN MYLISTFORM.HTML
+    const getListData = WatchListStorage.getLocalStorage("watchlist-storage");
+    console.log(getListData);
+    const listStorageWrapper = document.querySelectorAll(".list-storage-wrapper");
     let movieId;
     let storageId;
 
-    const watchStorageWrapper = document.querySelectorAll(".watch-storage-wrapper");
     getListData.forEach(list => {
-        let {title,description,privacy,"data-id":id} = list;
-        watchStorageWrapper.forEach(wrapper => {
+        let {title,description,privacy,"storage-id":id} = list;
+        listStorageWrapper.forEach(wrapper => {
             movieId = wrapper.dataset.movieid;
             const storageElem = document.createElement("div");
-            storageElem.classList.add("watch-list-storage");
+            storageElem.classList.add("list-storage");
             storageElem.setAttribute("data-movieid",movieId);
             storageElem.setAttribute("data-storageid",id);
-            storageElem.innerHTML = `<span class="watch-list-storage-title">${title}</span>`
+            console.log(id);
+            storageElem.innerHTML = `<span class="list-storage-title">${title}</span>`
             wrapper.appendChild(storageElem);
         })
     })
     
-    const watchListStorage = document.querySelectorAll(".watch-list-storage");
-    watchListStorage.forEach(list => {
+    const listStorage = document.querySelectorAll(".list-storage");
+    listStorage.forEach(list => {
         list.addEventListener("click", (e)=>{
             storageId = e.currentTarget.dataset.storageid;
+            console.log(storageId);
             movieId = e.currentTarget.dataset.movieid;
             console.log(movieId);
+            //this key is in mylistform
             const findKeyStorage = WatchListStorage.getLocalStorage("watch-list-id").find(id => id === storageId);
            //fetch specific movie data
             fetchSpecificMovie(movieId).then(data => {
@@ -240,7 +245,9 @@ ButtonMethods.prototype.getWatchList = ()=>{
                 vote_average: data.vote_average,
                 id: data.id
             }
+            console.log(movieData);
             const movieLibraryList = WatchListStorage.getLocalStorage(findKeyStorage);
+            console.log(movieLibraryList);
             if(movieLibraryList.find(data => data.id == movieId)){
                 alert("Already Added To The List");
                 return;
@@ -327,7 +334,7 @@ export const displaySortMovies = (data, container, sortWrap) => {
                             <input id="search" type="text" class="input" name="movie">
                             <button class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
-                        <div class="watch-storage-wrapper" data-movieid="${id}">
+                        <div class="list-storage-wrapper" data-movieid="${id}">
                         <div class="movie-to-add-wrapper movie-to-add-wrapper-dark-variant">
                  <span class="movie-to-add-title">Add ${title}</span>
             </div>

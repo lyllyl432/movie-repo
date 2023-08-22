@@ -1,5 +1,6 @@
 import { WatchListStorage } from "./myList-form.js";
 import {SEARCH_URL,IMAGE_URL} from "./app.js";
+import { currentClickId } from "./myListItem.js";
 class FORM {
     constructor(title, description, privacy, id) {
         this.title = title,
@@ -7,29 +8,20 @@ class FORM {
             this.privacy = privacy,
             this.id = id
     }
-    static activeList() {
-        const selectorList = document.querySelector(".selector-list");
-        const selectorListItems = document.querySelectorAll(".selector-list-items");
+    static activeList(actions) {
         const pages = document.querySelectorAll(".list-page");
 
-        selectorList.addEventListener("click", e => {
-            selectorListItems.forEach(selector => {
-                selector.classList.remove("active");
-            })
-            console.log(e.currentTarget)
-            e.target.classList.add("active");
-            pages.forEach(page => {
-                console.log(page)
-                page.classList.remove("active");
-                if (e.target.id == "show-form" && page.id === "edit-list-form") {
-                    // console.log("hello world");
+        actions.forEach(action => {
+            const element = document.getElementById(action.id);
+            const page = document.getElementById(action.pageId)
+            // console.log(element,page);
+
+            element.addEventListener("click",(e)=>{
+                pages.forEach(page => {
+                    page.classList.remove("active");
+                })
+                if(e.currentTarget.id === action.id && page.id === action.pageId){
                     page.classList.add("active");
-                } else if (e.target.id == "show-search" && page.id === "search") {
-                    page.classList.add("active");
-                } else if (e.target.id == "show-image") {
-                    console.log("hello night");
-                } else {
-                    console.log("hello world");
                 }
             })
         })
@@ -49,7 +41,18 @@ class FORM {
                 dataWarning.classList.remove("show");
                 suggestListWrapper.classList.add("show");
                 this.searchMoviesData(SEARCH_URL + "&query=" + inputSearchValue).then(result=>{
+                    //this load search movies
                     this.loadSearchMovies(result,searchSuggestList,dataWarning);
+                    //this add/update items to the movie list
+                    const options = {
+                        method: 'GET',
+                        headers: {
+                          accept: 'application/json',
+                          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMzRiYmRlNjljYWRkNmIwZjM5ZDcxODU5MjM5YTE5NCIsInN1YiI6IjYzZWEzY2RkNmM4NDkyMDBjZmIzNDRlZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AB7lC5hyv8kynXFd0nusaRlAqgrAd4Oy0z9H94eHrss'
+                        }
+                      };
+                    this.addStorageList(options);
+
                 });
         })
         document.addEventListener("click",e=>{
@@ -66,7 +69,7 @@ class FORM {
             dataWarning.classList.add("show");
         }
         datas.forEach(data =>{
-            let {title,poster_path,release_date,vote_average} = data;
+            let {title,poster_path,release_date,vote_average,id} = data;
              if(poster_path === null){
             url = "img/";
             poster_path = "404.png";
@@ -79,6 +82,7 @@ class FORM {
             percentage = Math.round(percentage); 
             const listElem = document.createElement("li");
             listElem.classList.add("suggest-list-items");
+            listElem.setAttribute("data-id",id);
             listElem.innerHTML = `<div class="suggest-items-image"><img src="${url + poster_path}" alt="movie image"></div><div class="suggest-items-info">
             <h6 class="suggest-list-title">${title}</h6>
             <span class="release-date-info">${release_date}</span>
@@ -98,6 +102,28 @@ class FORM {
         }
 
     }
+    static addStorageList(options){
+        const searchSuggestListItem = document.querySelectorAll(".suggest-list-items");
+        searchSuggestListItem.forEach(suggestList => {
+            suggestList.addEventListener("click",async e=>{
+               const queryDataId = e.currentTarget.dataset.id;
+               let data = await fetch(`https://api.themoviedb.org/3/movie/${queryDataId}?language=en-US`, options);
+                let result = await data.json();
+                
+            })
+        })   
+    }
+    static populateStorageList(){
+        const searchMovieSave = document.querySelector(".search-movie-save");
+        const datas = WatchListStorage.getLocalStorage(currentClickId);
+        console.log(datas);
+        datas.forEach(data => {
+            // const {title} = data;
+
+        })
+        
+    }
+   
     
 }
 
@@ -133,12 +159,12 @@ FORM.prototype.updatePopulatedForm = function(form,data){
         return item;
        })
        console.log(updatedData);
-       WatchListStorage.setLocalStorage(updatedData, "watchlist-data");
+       WatchListStorage.setLocalStorage(updatedData, "watchlist-storage");
     })
 }
 FORM.prototype.populateForm = function(form){
     for(const element of form){
-        console.log(element.name);
+        // console.log(element.name);
        switch(element.name){
         case "name": 
         element.value = this.title;
@@ -153,31 +179,39 @@ FORM.prototype.populateForm = function(form){
     }
 }
 class FindData{
-    static getIdData(){
+    static getIdData(data){
         const id = JSON.parse(localStorage.getItem("current-link-click"));
-        const myListData = WatchListStorage.getLocalStorage("watchlist-data");
+        const myListData = data;
+        console.log(myListData);
         //FIND THE DATA WITH USING ID
-        const result = myListData.find(data => data["data-id"] === id);
+        const result = myListData.find(data => data["storage-id"] === id);
         return result;
     }
    
 }
 window.addEventListener("DOMContentLoaded",()=>{
     const editListForm = document.querySelector("#edit-list-form");
-    const linksData = WatchListStorage.getLocalStorage("watchlist-data");
-    const data = FindData.getIdData();
-    console.log(data);
+    const linksData = WatchListStorage.getLocalStorage("watchlist-storage");
+    console.log(linksData);
+    const data = FindData.getIdData(linksData);
     const {title,description,privacy,"data-id":id} = data;
-    console.log(data);
     const editForm = new FORM(title,description,privacy,id);
     //populate form with the object data
     editForm.populateForm(editListForm);
     //active list
-    FORM.activeList();
+    const actions = [
+        { id: "show-form", pageId: "edit-list-form" },
+        { id: "show-search", pageId: "search" },
+        { id: "choose-image", pageId: "choose-image" },
+        { id: "show-delete", pageId: "delete-list" }
+    ];
+    FORM.activeList(actions);
     //update the populated form
     editForm.updatePopulatedForm(editListForm,linksData);
     //update the add/edit items page and make the auto recommend search input to the movie with start letters
     FORM.updateMovieList();
+    //populate movie list
+    FORM.populateStorageList();
     
 
 

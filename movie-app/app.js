@@ -136,6 +136,7 @@ export const loadMovies = async(url)=>{
     try{
     let data = await fetch(`${lastUrl}`);
     let result = await data.json();
+    console.log(result);
     displayMovies(result.results, IMAGE_URL);
 }
     catch(error){
