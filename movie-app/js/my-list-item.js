@@ -1,4 +1,4 @@
-import { WatchListStorage} from "./myList-form.js";
+import { WatchListStorage} from "./my-list-form.js";
 import { IMAGE_URL } from "./app.js";
 export const currentClickId = JSON.parse(localStorage.getItem("current-link-click")); 
 const myListData = WatchListStorage.getLocalStorage("watchlist-storage");

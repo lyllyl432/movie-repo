@@ -1,6 +1,6 @@
-import { WatchListStorage } from "./myList-form.js";
+import { WatchListStorage } from "./my-list-form.js";
 import {SEARCH_URL,IMAGE_URL} from "./app.js";
-import { currentClickId } from "./myListItem.js";
+import { currentClickId } from "./my-list-item.js";
 class FORM {
     constructor(title, description, privacy, id) {
         this.title = title,

@@ -1,12 +1,12 @@
-import { WatchListStorage} from "./myList-form.js";
+import { WatchListStorage} from "./my-list-form.js";
 class ListWrapper{
     static getWatchWrapperId = ()=>{
         const watchWrapperLink = document.querySelectorAll(".watchlist-wrapper-link");
       watchWrapperLink.forEach(link => {
         link.addEventListener("click",e =>{
             const currTarget = e.currentTarget;
-            const dataId = currTarget.dataset.storageid;
-            WatchListStorage.setLocalStorage(dataId,"current-link-click");
+            const storageId = currTarget.dataset.storageid;
+            WatchListStorage.setLocalStorage(storageId,"current-link-click");
         })
       })
     }
@@ -28,7 +28,7 @@ class ListWrapper{
            data-date="${date}">
            <div class="watchList-info centered-info">
                <div>
-                   <a href="./myListItem.html" class="watchlist-wrapper-link" data-storageid="${storageId}"><h3 class="box-heading-info">${title}</h3></a>
+                   <a href="./my-list-item.html" class="watchlist-wrapper-link" data-storageid="${storageId}"><h3 class="box-heading-info">${title}</h3></a>
                </div>
                <div>
                    <span class="item- counter">2 items</span>

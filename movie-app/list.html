@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--CSS-->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="movie.css">
-    <link rel="stylesheet" href="list.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/movie.css">
+    <link rel="stylesheet" href="css/list.css">
     <!--GOOGLE FONT-->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="styles
     ">
@@ -21,6 +21,7 @@
     <title>YouMovies</title>
 </head>
 <body>
+    <!--HEADER-->
     <section id="header">
         <div class="header-container container">
             <div class="nav-links">
@@ -28,23 +29,14 @@
                     <a href="#">YouMovies</a>
                 </div>
                 <ul class="nav-menu">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Drama</a></li>
-                    <li><a href="#">Movies</a></li>
-                    <li><a href="#">Episodes</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="list.html">My List</a></li>
+                    <li><a href="list-link-wrapper.html">My Bookmarks</a></li>
+                    <li><a href="favorite.html">My Favorites</a></li>
                 </ul>
-            </div>
-            <div id="search-icon">
-                <i class="fa-solid fa-magnifying-glass"></i>
             </div>
         </div>
     </section>
-    <div class="search-bar-container">
-        <div class="form-group has-search">
-            <input type="text" class="form-control" placeholder="Search for a movie, tv shows">
-            <span class="fa fa-search form-control-feedback"></span>
-          </div>
-    </div>
     <!--Account section-->
     <main id="content-wrapper">
         <div id="account">
@@ -295,5 +287,5 @@
         </div>
     </main>
 <!--js file source-->
-<script type="module" src="list.js"></script>
+<script type="module" src="js/list.js"></script>
 </body>
