@@ -1,0 +1,377 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+    :root{
+        --color-primary: #031A6B;
+        --color-secondary: #1ac9f5;
+        --color-bg-1:  #033860;
+        --color-bg-2:#087CA7;
+        --color-bg-3:#004385; 
+        --color-bg-4:#05B2DC; 
+        --color-white: rgb(255, 255, 255);
+        --color-white-variant: rgba(255, 255, 255, 0.5);
+        --color-black: #000;
+        --color-black-variant: rgba(0, 0, 0, 0.5);
+        --color-black-variant-2: rgba(0, 0, 0, 0.2);
+        --color-danger: red;
+        --color-favorite: #FF69B4;
+        --container--lg: 88%;
+        --container--mg: 90%;
+        --container--sg: 94%;
+    }
+a{
+    text-decoration: none;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  font-family: 'Montserrat', sans-serif;
+  background: var(--color-bg-1);
+  color: var(--color-white);
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+h1,h2,h3,h4,h5,h6 {
+    font-weight: normal;
+    font-style: normal;
+  }
+.container{
+    width: var(--container--lg);
+    margin: 0 auto;
+}
+.btn{
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-bg-1);
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+.btn_primary{
+    background-color: var(--color-bg-3);
+}
+.btn:hover{
+    background-color: var(--color-bg-2);
+    
+}
+/*-----End Common Style-----*/
+/*-----Header-----*/
+#header{
+    position: relative;
+    height: 5rem;
+    background: var(--color-bg-4);
+}
+#header .input-control{
+    visibility: hidden;
+}
+#header .input-control.show{
+    visibility:visible;
+}
+.header-container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+.nav-links{
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+.nav-links #logo{
+    font-size: 2rem;
+    font-weight: 700;
+}
+.nav-links #logo a{
+    color: var(--color-bg-3);
+}
+.nav-links .nav-menu{
+    display: flex;
+    gap: 2rem;
+}
+.nav-links .nav-menu li{
+    list-style: none;
+}
+.nav-links .nav-menu li a{
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.header-container #search-icon{
+    display: flex;
+      align-items: center;
+    color: var(--color-white);
+    background: var(--color-bg-2);
+    padding: 1rem 0.75rem;
+}
+.header-container #search-icon i{
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+/*--Animated search bar--*/
+.search-bar-container{
+    width: 100%;
+}
+.search-bar-container #form{
+    width: 100%;
+}
+/* .search-bar-container #form #search-input{
+    width: 100%;
+    padding: 9px 4px 9px 40px;
+    outline: none;
+    background: var(--color-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat 13px center;
+    display: block;
+
+}
+.search-bar-container #form #search-input::placeholder{
+    font-size: 1rem;
+    font-style: italic;
+    opacity: 0.8;
+} */
+.form-group{
+    position: relative;
+    height: 0;
+}
+.form-control{
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    outline: none;
+    width: 100%;
+    padding: 0.7rem 4rem;
+    transition: visibility 2s, opacity 0.5s linear;
+}
+.form-control::placeholder{
+    font-size: 1rem;
+    font-style: italic;
+    opacity: 0.8;
+}
+.form-group.show{
+    height: auto;
+}
+.form-group.show .form-control{
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+}
+.form-group.show .form-control-feedback{
+    visibility: visible;
+    opacity: 1;
+}
+.form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    top: 0.7rem;
+    left: 2rem;
+    text-align: center;
+    pointer-events: none;
+    color: var(--color-black);
+    font-weight: 900;
+    visibility: hidden;
+    opacity: 0; 
+}
+.has-search
+.search-bar-container #form input[type="search"]::placeholder{
+    color: var(--color-black);
+}
+/*--Carousel--*/
+#carousel{
+    position: relative;
+    background: var(--color-bg-4);
+    padding: 1rem;
+    margin-top: 2px;
+}
+#carousel .carousel-title{
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--color-primary);
+}
+.swiper{
+    width: 100%;
+    height: 100%;
+}
+.swiper-wrapper{
+    position: relative;
+    margin: 3rem 0 3rem 0;
+}
+.swiper-slide {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.swiper-slide img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+.swiper {
+   margin: 0 auto;
+}
+    /*--Dynamic added in DOM using JS--*/
+.movie-info{
+    color: var(--color-black-variant);
+}
+.movie-info{
+    margin-top: 0.8rem;
+}
+.movie-info h4{
+    font-size: 0.8rem;
+}
+.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: var(--color-primary);
+}
+.swiper-pagination-bullet {
+    background: var(--color-primary) !important;
+}
+.swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 1.2rem !important;
+    color: var(--color-black-variant);
+}
+.swiper-button-next, .swiper-rtl .swiper-button-prev {
+    top: 1rem !important;
+    right: 0 !important;
+    left: auto;
+}
+.swiper-button-prev, .swiper-rtl .swiper-button-next {
+    top: 1rem !important;
+    left: auto !important;
+    right: 3rem !important;
+}
+/*--Box movies--*/
+#box{
+    margin-top: 1rem;
+    background: var(--color-bg-2);
+    overflow-x: scroll;
+    padding: 2rem 1rem;
+}
+.box-title{
+    color: var(--color-white);
+    text-shadow: 1px 1px 5px var(--color-black);
+}
+.box-container{
+    display: flex;
+    align-content: center;
+    margin-top: 2rem;
+    gap: 1rem;  
+}
+.box-image{
+    max-width: 10rem;
+    min-width: 7rem;
+    height: auto;
+    overflow: hidden;
+}
+.box-image img{
+    transition: all 1s ease-out;
+}
+.box-image img:hover{
+    transform: scale(1.1);
+}
+.box-item-info{
+    margin-top: 1rem;
+    text-align: center;
+    color: var(--color-black-variant);
+}
+.box-item-info h4{
+    font-size: 0.8rem;
+}
+
+/*--FOOTER--*/
+footer{
+    background: var(--color-bg-4);
+    margin-top: 2rem;
+    padding: 3rem;
+}
+.footer-container{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+.footer-col{
+    color: var(--color-primary);
+}
+.footer-col #logo{
+    font-size: 2rem;
+}
+.footer-col:nth-child(1) #logo a{
+    color: var(--color-primary);
+    font-weight: 700;
+}
+.footer-col:nth-child(1) .btn{
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+.footer-col h4{
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;  
+}
+.footer-links > li{
+    margin-top: 0.7rem;
+}
+.footer-links li a{
+    color: var(--color-primary);
+    cursor: pointer;
+}

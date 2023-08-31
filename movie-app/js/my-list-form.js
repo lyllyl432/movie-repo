@@ -10,7 +10,7 @@ export class WatchListStorage{
         }
 }
 export class LocalId extends WatchListStorage{
-    static saveIdLocal(){
+    static saveIdLocal(id){
         let watchListIds = super.getLocalStorage("watch-list-id");
         watchListIds.push(id);
         super.setLocalStorage(watchListIds,"watch-list-id"); 
@@ -33,16 +33,16 @@ window.addEventListener("DOMContentLoaded",()=>{
                 "title": outputName,
                 "description": outputDesc,
                 "privacy": privacyValue,
-                "data-id": id,
+                "storage-id": id,
                 "date": new Date()
             }
-            let localArrData = WatchListStorage.getLocalStorage("watchlist-data");
+            let localArrData = WatchListStorage.getLocalStorage("watchlist-storage");
             let presentItem = localArrData.find(item => item.title == data.title);
             if(presentItem){
                 alert("Name already exist");
             }else{
                 localArrData.push(data);
-                WatchListStorage.setLocalStorage(localArrData,"watchlist-data");
+                WatchListStorage.setLocalStorage(localArrData,"watchlist-storage");
                  //save id
                 LocalId.saveIdLocal(id)
             }

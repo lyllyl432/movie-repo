@@ -1,14 +1,18 @@
-import { WatchListStorage} from "./myList-form.js";
+import { WatchListStorage} from "./my-list-form.js";
 import { IMAGE_URL } from "./app.js";
+export const currentClickId = JSON.parse(localStorage.getItem("current-link-click")); 
+const myListData = WatchListStorage.getLocalStorage("watchlist-storage");
+
 class ListItem{
     constructor(id,title,description){
-        this.title = title,
-        this.description = description
-        this.id = id
+        this.title = title;
+        this.description = description;
+        this.id = id;
     }
 }
 ListItem.prototype.displayUI = function(){
     const datas = WatchListStorage.getLocalStorage(this.id);
+    console.log(datas);
     let count = 0;
     const listItems = document.querySelector(".list-items");
     datas.forEach(data => {
@@ -46,15 +50,13 @@ ListItem.prototype.updateHeaderInfo = function(){
 }
 
 window.addEventListener("DOMContentLoaded",()=>{
-    const id = JSON.parse(localStorage.getItem("current-link-click")); 
-    const myListData = WatchListStorage.getLocalStorage("watchlist-data");
     console.log(myListData);
     //FIND THE DATA WITH USING ID
-    const findData = myListData.find(data => data["data-id"] === id);
+    const findData = myListData.find(data => data["storage-id"] === currentClickId);
     // console.log(findData);
     //instance of ListItem class
     const {title,description} = findData
-   const dynamicList = new ListItem(id,title,description);
+   const dynamicList = new ListItem(currentClickId,title,description);
    dynamicList.displayUI();
    dynamicList.updateHeaderInfo();
 
