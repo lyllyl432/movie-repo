@@ -11,6 +11,7 @@ Search for specific movies or shows.
 Get detailed information about each movie, including plot, release date, and rating.
 Watch movie trailers directly from the app.
 Explore information about the cast and crew involved in the production.
+
 Technologies Used:
 
 HTML
